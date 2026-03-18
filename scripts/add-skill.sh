@@ -8,6 +8,8 @@
 # tool's global skills folder, so one source of truth serves all three.
 #
 set -euo pipefail
+SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+source "$SCRIPT_DIR/lib.sh"
 
 usage() {
     cat <<EOF
@@ -36,22 +38,18 @@ input="$1"
 # accepting either a SKILL.md file or the directory containing it.
 if [[ -f "$input" ]]; then
     if [[ "$(basename "$input")" != "SKILL.md" ]]; then
-        echo "error: file must be named SKILL.md" >&2
-        exit 1
+        error "file must be named SKILL.md"
     fi
     skill_dir="$(cd "$(dirname "$input")" && pwd)"
 elif [[ -d "$input" ]]; then
     if [[ ! -f "$input/SKILL.md" ]]; then
-        echo "error: no SKILL.md found in $input" >&2
-        exit 1
+        error "no SKILL.md found in $input"
     fi
     skill_dir="$(cd "$input" && pwd)"
 else
-    echo "error: $input is not a file or directory" >&2
-    exit 1
+    error "$input is not a file or directory"
 fi
 
-# The directory name becomes the skill name in each target.
 skill_name="$(basename "$skill_dir")"
 
 TARGETS=(
@@ -61,25 +59,5 @@ TARGETS=(
 )
 
 for target_dir in "${TARGETS[@]}"; do
-    mkdir -p "$target_dir"
-    link="$target_dir/$skill_name"
-
-    if [[ -L "$link" ]]; then
-        existing="$(readlink "$link")"
-        if [[ "$existing" == "$skill_dir" ]]; then
-            echo "  skip  $link (already linked)"
-            continue
-        fi
-        # Symlink exists but points somewhere else — replace it.
-        echo "  update $link -> $skill_dir (was $existing)"
-        rm "$link"
-    elif [[ -e "$link" ]]; then
-        # Real file/directory — don't clobber it.
-        echo "  warn  $link exists and is not a symlink, skipping" >&2
-        continue
-    else
-        echo "  link  $link -> $skill_dir"
-    fi
-
-    ln -s "$skill_dir" "$link"
+    safe_link "$skill_dir" "$target_dir/$skill_name"
 done

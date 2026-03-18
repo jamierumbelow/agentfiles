@@ -1,0 +1,19 @@
+personality = "pragmatic"
+model = "gpt-5.4"
+model_reasoning_effort = "xhigh"
+commit_attribution = ""
+suppress_unstable_features_warning = true
+
+[features]
+multi_agent = true
+default_mode_request_user_input = true
+
+[agents]
+max_threads = 6
+max_depth = 2
+
+[notice.model_migrations]
+"gpt-5.3-codex" = "gpt-5.4"
+
+[projects."/Users/james.rumbelow/workspace"]
+trust_level = "trusted"

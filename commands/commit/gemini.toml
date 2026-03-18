@@ -1,0 +1,26 @@
+description = "Commit staged changes following project conventions"
+prompt = """Commit the current changes. Follow these rules strictly:
+
+- Commit messages must be **lowercase only**
+- Commit messages must be a **single line** — no multi-line bodies
+- Commit messages must be **concise**
+- Commit messages must be **prefixed with the area** of the codebase that was changed, followed by a colon and space
+
+Format: `<area>: <short description>`
+
+Good examples:
+- `transactions: add new transaction type`
+- `tools: remove web viewer, not needed`
+- `auth: change from auth0 to custom auth provider`
+
+Bad examples:
+- `Add new transaction type` (not lowercase, no prefix)
+- Multi-line commit messages
+- `Changes from auth0 to custom auth provider` (no prefix)
+
+Steps:
+1. Run `git status` and `git diff --cached` to understand what's staged
+2. If nothing is staged, stage the appropriate files
+3. Write a commit message following the rules above
+4. Commit the changes
+"""
