@@ -15,7 +15,8 @@
 # This script symlinks each file into the correct tool directory.
 #
 set -euo pipefail
-source "$(dirname "$0")/lib.sh"
+SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+source "$SCRIPT_DIR/lib.sh"
 
 usage() {
     cat <<EOF
@@ -51,7 +52,7 @@ cmd_name=""
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --name)
-            [[ $# -lt 2 ]] && { echo "error: --name requires an argument" >&2; exit 1; }
+            [[ $# -lt 2 ]] && error "--name requires an argument"
             cmd_name="$2"
             shift 2
             ;;
@@ -59,7 +60,7 @@ while [[ $# -gt 0 ]]; do
             usage
             ;;
         *)
-            [[ -n "$input" ]] && { echo "error: unexpected argument: $1" >&2; exit 1; }
+            [[ -n "$input" ]] && error "unexpected argument: $1"
             input="$1"
             shift
             ;;
@@ -68,10 +69,7 @@ done
 
 [[ -z "$input" ]] && usage
 
-if [[ ! -d "$input" ]]; then
-    echo "error: $input is not a directory" >&2
-    exit 1
-fi
+[[ ! -d "$input" ]] && error "$input is not a directory"
 
 cmd_dir="$(cd "$input" && pwd)"
 
@@ -81,8 +79,7 @@ has_gemini=false
 [[ -f "$cmd_dir/gemini.toml" ]]  && has_gemini=true
 
 if ! $has_claude && ! $has_gemini; then
-    echo "error: $input contains neither claude.md nor gemini.toml" >&2
-    exit 1
+    error "$input contains neither claude.md nor gemini.toml"
 fi
 
 [[ -z "$cmd_name" ]] && cmd_name="$(basename "$cmd_dir")"

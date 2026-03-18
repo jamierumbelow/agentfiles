@@ -1,6 +1,8 @@
 # lib.sh — shared helpers for add-skill / add-command.
 # Sourced, not executed directly.
 
+source "$HOME/framework.sh"
+
 # Create or update a symlink, with idempotency.
 #   safe_link <source> <link>
 #
@@ -18,16 +20,16 @@ safe_link() {
         local existing
         existing="$(readlink "$link")"
         if [[ "$existing" == "$source" ]]; then
-            echo "  skip    $link (already linked)"
+            info "Already linked $link -> $source"
             return 0
         fi
-        echo "  update  $link -> $source (was $existing)"
+        info "Updated $link -> $source (was $existing)"
         rm "$link"
     elif [[ -e "$link" ]]; then
-        echo "  warn    $link exists and is not a symlink, skipping" >&2
+        warn "$link exists and is not a symlink, skipping"
         return 0
     else
-        echo "  link    $link -> $source"
+        info "Linked $link -> $source"
     fi
 
     ln -s "$source" "$link"

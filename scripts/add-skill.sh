@@ -8,7 +8,8 @@
 # tool's global skills folder, so one source of truth serves all three.
 #
 set -euo pipefail
-source "$(dirname "$0")/lib.sh"
+SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+source "$SCRIPT_DIR/lib.sh"
 
 usage() {
     cat <<EOF
@@ -37,19 +38,16 @@ input="$1"
 # accepting either a SKILL.md file or the directory containing it.
 if [[ -f "$input" ]]; then
     if [[ "$(basename "$input")" != "SKILL.md" ]]; then
-        echo "error: file must be named SKILL.md" >&2
-        exit 1
+        error "file must be named SKILL.md"
     fi
     skill_dir="$(cd "$(dirname "$input")" && pwd)"
 elif [[ -d "$input" ]]; then
     if [[ ! -f "$input/SKILL.md" ]]; then
-        echo "error: no SKILL.md found in $input" >&2
-        exit 1
+        error "no SKILL.md found in $input"
     fi
     skill_dir="$(cd "$input" && pwd)"
 else
-    echo "error: $input is not a file or directory" >&2
-    exit 1
+    error "$input is not a file or directory"
 fi
 
 skill_name="$(basename "$skill_dir")"
