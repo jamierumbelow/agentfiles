@@ -2,5 +2,7 @@
 gh = "latest"
 node = "latest"
 "npm:@anthropic-ai/claude-code" = "latest"
+"npm:@google/gemini-cli" = "latest"
 "npm:@openai/codex" = "latest"
 op = "latest"
+rust = "latest"
