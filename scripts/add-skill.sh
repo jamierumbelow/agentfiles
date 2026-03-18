@@ -8,6 +8,7 @@
 # tool's global skills folder, so one source of truth serves all three.
 #
 set -euo pipefail
+source "$(dirname "$0")/lib.sh"
 
 usage() {
     cat <<EOF
@@ -51,7 +52,6 @@ else
     exit 1
 fi
 
-# The directory name becomes the skill name in each target.
 skill_name="$(basename "$skill_dir")"
 
 TARGETS=(
@@ -61,25 +61,5 @@ TARGETS=(
 )
 
 for target_dir in "${TARGETS[@]}"; do
-    mkdir -p "$target_dir"
-    link="$target_dir/$skill_name"
-
-    if [[ -L "$link" ]]; then
-        existing="$(readlink "$link")"
-        if [[ "$existing" == "$skill_dir" ]]; then
-            echo "  skip  $link (already linked)"
-            continue
-        fi
-        # Symlink exists but points somewhere else — replace it.
-        echo "  update $link -> $skill_dir (was $existing)"
-        rm "$link"
-    elif [[ -e "$link" ]]; then
-        # Real file/directory — don't clobber it.
-        echo "  warn  $link exists and is not a symlink, skipping" >&2
-        continue
-    else
-        echo "  link  $link -> $skill_dir"
-    fi
-
-    ln -s "$skill_dir" "$link"
+    safe_link "$skill_dir" "$target_dir/$skill_name"
 done
