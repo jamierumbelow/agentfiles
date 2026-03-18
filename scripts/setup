@@ -11,7 +11,7 @@ agentsmd-symlink() {
 }
 
 # configs
-symlink "$AGENTFILES/.codex/config.toml" "$HOME/.codex/config.toml"
+symlink "$AGENTFILES/codex/config.toml" "$HOME/.codex/config.toml"
 
 # vault
 agentsmd-symlink "vault" "$WORKSPACE/vault"
