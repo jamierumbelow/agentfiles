@@ -17,7 +17,9 @@ symlink "$AGENTFILES/scripts/add-command.sh" "$HOME/bin/add-command"
 # configs
 symlink "$AGENTFILES/codex/config.toml" "$HOME/.codex/config.toml"
 
-# vault
+# global
+agentsmd-symlink "global" "$HOME/.codex"
+agentsmd-symlink "global" "$HOME/.claude"
 agentsmd-symlink "vault" "$WORKSPACE/vault"
 
 # repos
