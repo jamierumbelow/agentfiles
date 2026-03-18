@@ -20,7 +20,7 @@ safe_link() {
         local existing
         existing="$(readlink "$link")"
         if [[ "$existing" == "$source" ]]; then
-            info "Already linked $link -> $source"
+            info "Linked $link -> $source"
             return 0
         fi
         info "Updated $link -> $source (was $existing)"
