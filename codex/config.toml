@@ -17,3 +17,6 @@ max_depth = 2
 
 [projects."/Users/james.rumbelow/workspace"]
 trust_level = "trusted"
+
+[projects."/Users/james.rumbelow/workspace/repos/app-backend-main"]
+trust_level = "trusted"
