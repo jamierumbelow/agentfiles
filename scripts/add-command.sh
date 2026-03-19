@@ -86,3 +86,5 @@ fi
 
 $has_claude && safe_link "$cmd_dir/claude.md"   "$HOME/.claude/commands/${cmd_name}.md"
 $has_gemini && safe_link "$cmd_dir/gemini.toml" "$HOME/.gemini/commands/${cmd_name}.toml"
+
+exit 0

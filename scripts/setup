@@ -13,6 +13,8 @@ agentsmd-symlink() {
 # setup scripts
 symlink "$AGENTFILES/scripts/add-skill.sh" "$HOME/bin/add-skill"
 symlink "$AGENTFILES/scripts/add-command.sh" "$HOME/bin/add-command"
+symlink "$AGENTFILES/scripts/add-all-skills.sh" "$HOME/bin/add-all-skills"
+symlink "$AGENTFILES/scripts/add-all-commands.sh" "$HOME/bin/add-all-commands"
 
 # configs
 symlink "$AGENTFILES/codex/config.toml" "$HOME/.codex/config.toml"
@@ -27,6 +29,5 @@ agentsmd-symlink "lgtm" "$WORKSPACE/repos/lgtm"
 agentsmd-symlink "chatterbox" "$WORKSPACE/repos/chatterbox"
 
 # global skills & commands
-add-skill "$AGENTFILES/skills/commit"
-add-command "$AGENTFILES/commands/commit"
-add-command "$AGENTFILES/commands/start-day"
+add-all-skills
+add-all-commands
