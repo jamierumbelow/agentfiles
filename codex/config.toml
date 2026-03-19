@@ -15,8 +15,14 @@ max_depth = 2
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
 
+[projects."/Users/jamierumbelow/workspace"]
+trust_level = "trusted"
+
 [projects."/Users/james.rumbelow/workspace"]
 trust_level = "trusted"
 
-[projects."/Users/jamierumbelow/workspace"]
+[projects."/Users/james.rumbelow/workspace/repos/app-backend-main"]
+trust_level = "trusted"
+
+[projects."/Users/james.rumbelow/workspace/repos/letterhead"]
 trust_level = "trusted"
