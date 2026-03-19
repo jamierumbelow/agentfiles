@@ -2,8 +2,8 @@
 #
 # add-skill — register a SKILL.md with every AI coding tool at once.
 #
-# All three tools (Claude Code, Codex, Gemini CLI) share the same
-# convention: ~/.{tool}/skills/{name}/SKILL.md. This script resolves
+# Claude Code and Gemini CLI use ~/.{tool}/skills/{name}/SKILL.md.
+# Codex uses ~/.agents/skills/{name}/SKILL.md. This script resolves
 # the input to an absolute skill directory and symlinks it into each
 # tool's global skills folder, so one source of truth serves all three.
 #
@@ -24,7 +24,7 @@ Codex, and Gemini CLI.
 
 The skill directory is symlinked into:
   ~/.claude/skills/<name>
-  ~/.codex/skills/<name>
+  ~/.agents/skills/<name>   (Codex)
   ~/.gemini/skills/<name>
 EOF
     exit 1
@@ -54,7 +54,7 @@ skill_name="$(basename "$skill_dir")"
 
 TARGETS=(
     "$HOME/.claude/skills"
-    "$HOME/.codex/skills"
+    "$HOME/.agents/skills"
     "$HOME/.gemini/skills"
 )
 
