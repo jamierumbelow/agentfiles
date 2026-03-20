@@ -24,9 +24,13 @@ agentsmd-symlink "global" "$HOME/.codex"
 agentsmd-symlink "global" "$HOME/.claude"
 agentsmd-symlink "vault" "$WORKSPACE/vault"
 
-# repos
-agentsmd-symlink "lgtm" "$WORKSPACE/repos/lgtm"
-agentsmd-symlink "chatterbox" "$WORKSPACE/repos/chatterbox"
+# repos — auto-symlink any repo that has a matching agentsmd config
+for repo in "$WORKSPACE"/repos/*/; do
+    name="$(basename "$repo")"
+    if [ -d "$AGENTFILES/agentsmd/$name" ]; then
+        agentsmd-symlink "$name" "$repo"
+    fi
+done
 
 # global skills & commands
 add-all-skills
