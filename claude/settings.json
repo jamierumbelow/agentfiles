@@ -9,6 +9,9 @@
       "Bash(git worktree:*)",
       "Web Search(*)",
       "Fetch(*)"
+    ],
+    "additionalDirectories": [
+      "~/workspace/vault"
     ]
   },
   "model": "opus[1m]",
