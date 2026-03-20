@@ -1,0 +1,50 @@
+{
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git:*)",
+      "Bash(git worktree:*)",
+      "Web Search(*)",
+      "Fetch(*)"
+    ]
+  },
+  "model": "opus[1m]",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/Users/james.rumbelow/.claude/hooks/gsd-check-update.js\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/Users/james.rumbelow/.claude/hooks/gsd-context-monitor.js\""
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "node \"/Users/james.rumbelow/.claude/hooks/gsd-statusline.js\""
+  },
+  "sandbox": {
+    "filesystem": {
+      "allowWrite": ["~/workspace/vault"]
+    },
+    "network": {
+      "allowUnixSockets": ["~/.gnupg/S.gpg-agent"]
+    }
+  },
+  "skipDangerousModePermissionPrompt": true
+}
