@@ -35,3 +35,9 @@ trust_level = "trusted"
 
 [projects."/Users/jamierumbelow/workspace/repos/agentfiles-private"]
 trust_level = "trusted"
+
+[projects."/Users/jamierumbelow/workspace/repos/letterhead"]
+trust_level = "trusted"
+
+[projects."/Users/jamierumbelow/workspace/tmp/hatch"]
+trust_level = "trusted"
