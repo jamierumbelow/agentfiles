@@ -65,7 +65,14 @@ Format the output for the briefing:
 - Sort timed events chronologically
 - Skip holiday calendar noise (public holidays, religious observances) unless they're relevant to the user's country (UK/US)
 
-## Step 5: Git status across workspace repos
+## Step 5: Update cass index
+
+Run `cass health --json`. If the exit code is non-zero, run `cass index --full`
+to rebuild. If healthy, run `cass index` to pick up any new sessions since the
+last index. Report the status briefly in the briefing (e.g. "cass: healthy,
+2,500 conversations indexed" or "cass: rebuilt index").
+
+## Step 6: Git status across workspace repos
 
 For each directory in `~/workspace/repos/*/`, run:
 - `git status --porcelain` to check for uncommitted changes
@@ -75,7 +82,7 @@ Only report repos that have uncommitted changes or are on a branch other than `m
 
 Run these in parallel where possible to keep things fast.
 
-## Step 6: Write a worklog entry
+## Step 7: Write a worklog entry
 
 Use the `worklog` skill to write an entry like:
 
@@ -105,6 +112,9 @@ After all steps are complete, present a formatted summary to the user:
 
 ### Repo status
 [repos with uncommitted work or non-default branches]
+
+### cass
+[index status: healthy/rebuilt, conversation count]
 
 ### Daily note
 [created / already existed]
