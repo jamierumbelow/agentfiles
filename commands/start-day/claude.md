@@ -65,14 +65,51 @@ Format the output for the briefing:
 - Sort timed events chronologically
 - Skip holiday calendar noise (public holidays, religious observances) unless they're relevant to the user's country (UK/US)
 
-## Step 5: Update cass index
+## Step 5: Email triage via letterhead
+
+### 5a: Sync and health check
+
+Run `letterhead sync` to pull new messages, then `letterhead status --json` to confirm the archive is healthy. Note the total message count and last sync time.
+
+If `letterhead` is not installed or returns an error (e.g. exit code 6 for not initialized), skip this entire step and note it in the briefing as "letterhead: not configured".
+
+### 5b: Fetch recent emails
+
+```bash
+letterhead find --after <yesterday's date YYYY-MM-DD> --limit 50 --json
+```
+
+### 5c: Read and triage
+
+For the threads returned, read any that look like they might need action (use `letterhead read <read_handle> --view text` to get the body). Use your judgement — prioritise threads that look like they contain requests, deadlines, decisions, or action items over newsletters, notifications, and automated messages.
+
+Categorise each actionable thread into one of:
+
+- **Today** — needs a reply or action today (explicit deadlines, direct requests, time-sensitive)
+- **This week** — important but not urgent (follow-ups, reviews, things with a few days' runway)
+- **FYI** — worth knowing about but no action needed right now
+
+Skip anything that's clearly noise (automated notifications, marketing, CI alerts).
+
+### 5d: Create todos
+
+For each **Today** and **This week** item, add a `- [ ]` todo to today's daily note under `## Todos`. Prefix with `[email]` so they're easy to spot. Include the sender and a short description, e.g.:
+
+```
+- [ ] [email] Reply to Alice re: Q2 budget review (deadline today)
+- [ ] [email] Review draft from Bob — feedback by Thursday
+```
+
+Don't duplicate items that already exist in today's todos.
+
+## Step 6: Update cass index
 
 Run `cass health --json`. If the exit code is non-zero, run `cass index --full`
 to rebuild. If healthy, run `cass index` to pick up any new sessions since the
 last index. Report the status briefly in the briefing (e.g. "cass: healthy,
 2,500 conversations indexed" or "cass: rebuilt index").
 
-## Step 6: Git status across workspace repos
+## Step 7: Git status across workspace repos
 
 For each directory in `~/workspace/repos/*/`, run:
 - `git status --porcelain` to check for uncommitted changes
@@ -82,7 +119,7 @@ Only report repos that have uncommitted changes or are on a branch other than `m
 
 Run these in parallel where possible to keep things fast.
 
-## Step 7: Write a worklog entry
+## Step 8: Write a worklog entry
 
 Use the `worklog` skill to write an entry like:
 
@@ -109,6 +146,18 @@ After all steps are complete, present a formatted summary to the user:
 
 ### Potentially dropped todos
 [unchecked items from recent days, if any]
+
+### Email
+[N new messages since yesterday]
+
+**Today:**
+[threads needing action today, with sender and subject]
+
+**This week:**
+[threads needing action this week]
+
+**FYI:**
+[notable threads, no action needed]
 
 ### Repo status
 [repos with uncommitted work or non-default branches]
