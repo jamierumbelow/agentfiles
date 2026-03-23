@@ -75,8 +75,10 @@ If `letterhead` is not installed or returns an error (e.g. exit code 6 for not i
 
 ### 5b: Fetch recent emails
 
+Check what day of the week it is. If it's Monday, look back to Friday; otherwise look back to yesterday. Use the appropriate date as the `--after` value:
+
 ```bash
-letterhead find --after <yesterday's date YYYY-MM-DD> --limit 50 --json
+letterhead find --after <lookback date YYYY-MM-DD> --limit 50 --json
 ```
 
 ### 5c: Read and triage
