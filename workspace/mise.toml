@@ -1,9 +1,11 @@
 [tools]
+gcloud = "latest"
 gh = "latest"
 node = "latest"
 "npm:@anthropic-ai/claude-code" = "latest"
 "npm:@google/gemini-cli" = "latest"
 "npm:@openai/codex" = "latest"
+"npm:@googleworkspace/cli" = "latest"
 "npm:@readwise/cli" = "latest"
 op = "latest"
 "github:Dicklesworthstone/coding_agent_session_search" = "latest"
