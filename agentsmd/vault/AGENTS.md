@@ -12,6 +12,7 @@ This is an Obsidian vault containing personal notes, writing, project planning, 
 ## Conventions
 
 - All content is Markdown, authored for Obsidian (may use wiki-links, callouts, and other Obsidian-flavored syntax).
+- Use `[[wiki-links]]` when referencing other notes in the vault — especially when mentioning a file you've just created or edited. Prefer the bare note name (e.g. `[[silly-research-ideas]]`) over the full path.
 
 ## Specific Directories
 
