@@ -42,12 +42,20 @@
     "command": "node \"/Users/james.rumbelow/.claude/hooks/gsd-statusline.js\""
   },
   "sandbox": {
-    "filesystem": {
-      "allowWrite": ["~/workspace/vault"]
-    },
     "network": {
-      "allowUnixSockets": ["~/.gnupg/S.gpg-agent"]
+      "allowUnixSockets": [
+        "~/.gnupg/S.gpg-agent",
+        "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+      ]
+    },
+    "filesystem": {
+      "allowWrite": [
+        "~/workspace/vault"
+      ]
     }
   },
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "enabledPlugins": {
+    "swift-lsp@claude-plugins-official": true
+  }
 }
