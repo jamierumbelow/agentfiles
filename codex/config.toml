@@ -44,3 +44,6 @@ trust_level = "trusted"
 
 [projects."/Users/james.rumbelow/workspace/repos/agentfiles"]
 trust_level = "trusted"
+
+[projects."/Users/james.rumbelow/workspace/repos/world-app-ios"]
+trust_level = "trusted"
