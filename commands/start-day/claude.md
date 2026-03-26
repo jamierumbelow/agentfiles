@@ -26,38 +26,16 @@ If there are unchecked items, present them to the user as "potentially dropped t
 
 ## Step 4: Fetch today's calendar
 
-Run this AppleScript to get today's events:
+Run the precompiled EventKit binary:
 
 ```bash
-osascript -e '
-use scripting additions
+~/.claude/bin/calendar-today
+```
 
-set today to current date
-set time of today to 0
-set tomorrow to today + (1 * days)
+This reads the local calendar cache via EventKit — fast and doesn't depend on Calendar.app being responsive. If the binary is missing, recompile it:
 
-set output to ""
-tell application "Calendar"
-    repeat with cal in calendars
-        set calEvents to (every event of cal whose start date ≥ today and start date < tomorrow)
-        repeat with ev in calEvents
-            set evStart to start date of ev
-            set evEnd to end date of ev
-            set evSummary to summary of ev
-            set h to hours of evStart
-            set m to minutes of evStart
-            if h < 10 then set h to "0" & h
-            if m < 10 then set m to "0" & m
-            set eh to hours of evEnd
-            set em to minutes of evEnd
-            if eh < 10 then set eh to "0" & eh
-            if em < 10 then set em to "0" & em
-            set output to output & h & ":" & m & "-" & eh & ":" & em & " " & evSummary & linefeed
-        end repeat
-    end repeat
-end tell
-return output
-'
+```bash
+swiftc -O -o ~/.claude/bin/calendar-today ~/.claude/bin/calendar-today.swift
 ```
 
 Format the output for the briefing:
