@@ -9,3 +9,4 @@ node = "25.8.1"
 "npm:@readwise/cli" = "0.5.3"
 op = "2.32.1"
 "github:Dicklesworthstone/coding_agent_session_search" = "0.2.2"
+"github:obsidianmd/obsidian-releases" = { version = "latest", asset_pattern = "Obsidian*.AppImage" }
