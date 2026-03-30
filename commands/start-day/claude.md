@@ -22,7 +22,7 @@ If the previous day's Tomorrow section is empty or the file doesn't exist, skip 
 
 Look at the last 5 daily notes (excluding today). Collect any unchecked `- [ ]` items from their `## Todos` sections.
 
-If there are unchecked items, present them to the user as "potentially dropped todos" in the morning briefing. Do not automatically add them anywhere.
+If there are unchecked items, deduplicate them and add them all to today's `## Todos` section (after any existing todos). Mention them in the briefing summary so Jamie knows what was pulled in.
 
 ## Step 4: Fetch today's calendar
 
@@ -124,8 +124,8 @@ After all steps are complete, present a formatted summary to the user:
 ### Todos pulled forward
 [items from yesterday's Tomorrow section, if any]
 
-### Potentially dropped todos
-[unchecked items from recent days, if any]
+### Dropped todos pulled in
+[unchecked items from recent days that were added to today's Todos, if any]
 
 ### Email
 [N new messages since yesterday]
