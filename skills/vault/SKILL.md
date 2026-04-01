@@ -1,9 +1,9 @@
 ---
 name: vault
 description: >-
-  Guidelines for adding new pages and content to Jamie's Obsidian vault at
-  `~/workspace/vault`. Use when creating or editing vault pages outside the
-  daily worklog.
+  Guidelines for adding new pages and content to Jamie's Obsidian vault. The
+  vault may be at `~/workspace/vault`, `~/Documents/Obsidian Vault`, or another
+  path — use when creating or editing vault pages outside the daily worklog.
 ---
 
 # Vault
