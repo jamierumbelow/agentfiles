@@ -10,3 +10,4 @@ node = "25.8.1"
 op = "2.32.1"
 "github:Dicklesworthstone/coding_agent_session_search" = "0.2.2"
 "github:obsidianmd/obsidian-releases" = { version = "latest", asset_pattern = "Obsidian*.AppImage" }
+"cargo:https://github.com/rtk-ai/rtk" = "latest"
