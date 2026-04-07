@@ -82,6 +82,17 @@ day.
 Append only inside `## Worklog`. Do not modify `## Everyday`, `## Todos`,
 `## Flashcards`, or `## Tomorrow` unless Jamie asked for that specifically.
 
+## Todo tags
+
+Every item in `## Todos` should end with one of these tags:
+
+- `#work` — World / professional tasks
+- `#life` — life admin, family, personal finance
+- `#side-projects` — side projects (e.g. lgtm)
+
+When adding new todos or carrying them forward to a new day, always include the
+appropriate tag at the end of the line.
+
 If `## Worklog` is missing, add it at the end of the file and append the new
 entry there.
 
