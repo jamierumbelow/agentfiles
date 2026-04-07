@@ -13,6 +13,8 @@ This is an Obsidian vault containing personal notes, writing, project planning, 
 
 - All content is Markdown, authored for Obsidian (may use wiki-links, callouts, and other Obsidian-flavored syntax).
 - Use `[[wiki-links]]` when referencing other notes in the vault — especially when mentioning a file you've just created or edited. Prefer the bare note name (e.g. `[[silly-research-ideas]]`) over the full path.
+- Do **not** add an `# Title` heading at the top of new pages. Obsidian displays the filename as the page title, so a leading H1 is redundant. Start the file body directly with content or a frontmatter block, and use `##` as the highest heading level within the page body.
+- **When creating or editing vault pages**, invoke the `vault` skill for full guidelines before writing.
 
 ## Specific Directories
 
