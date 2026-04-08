@@ -14,7 +14,6 @@
       "~/workspace/vault"
     ]
   },
-  "model": "opus[1m]",
   "hooks": {
     "SessionStart": [
       {
@@ -41,6 +40,10 @@
     "type": "command",
     "command": "node \"/Users/james.rumbelow/.claude/hooks/gsd-statusline.js\""
   },
+  "enabledPlugins": {
+    "swift-lsp@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true
+  },
   "sandbox": {
     "network": {
       "allowUnixSockets": [
@@ -55,7 +58,5 @@
     }
   },
   "skipDangerousModePermissionPrompt": true,
-  "enabledPlugins": {
-    "swift-lsp@claude-plugins-official": true
-  }
+  "model": "opus[1m]"
 }
