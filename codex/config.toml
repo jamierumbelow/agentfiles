@@ -56,3 +56,12 @@ trust_level = "trusted"
 
 [projects."/Users/james.rumbelow/Documents/Jamie"]
 trust_level = "trusted"
+
+[projects."/Users/jamierumbelow/workspace/repos/stub"]
+trust_level = "trusted"
+
+[projects."/"]
+trust_level = "trusted"
+
+[projects."/Users/jamierumbelow/workspace/repos/crumbs"]
+trust_level = "trusted"
