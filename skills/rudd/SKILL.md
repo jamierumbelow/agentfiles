@@ -76,14 +76,16 @@ EOF
 # Open — capture the id (use --json) so you can close it later.
 rudd open --ticker SPY --expiry 2026-06-13 --type call --strike 585 \
           --price 2.50 --qty 2 [--side long|short] [--fees 1.30] \
-          [--note "…"] [--tag breakout] --json
+          [--note "…"] [--tag breakout] [--time 10:15] --json
 
 # Close by id, or match a single open position when the id is unknown.
-rudd close 12 --price 3.80 [--fees 1.30] [--note "…"]
+rudd close 12 --price 3.80 [--fees 1.30] [--note "…"] [--time 10:48]
 rudd close --ticker SPY --strike 585 --type call --price 3.80
 ```
 `--price` is the premium per share; dollar P&L applies the 100× multiplier.
 P&L: `(exit-entry)*qty*100` (negated for shorts), minus entry+exit fees.
+`--time` sets entry/exit time (`HH:MM`, RFC3339, or `now`; default `now`). When
+Jamie gives times ("entered 10:15, out 10:48"), pass them so time-held is tracked.
 
 ### List & analyse
 ```bash
