@@ -87,7 +87,7 @@ P&L: `(exit-entry)*qty*100` (negated for shorts), minus entry+exit fees.
 
 ### List & analyse
 ```bash
-rudd list [--open|--closed|--all] [--ticker SPY] [--date YYYY-MM-DD]
+rudd list [--open|--closed] [--ticker SPY] [--date YYYY-MM-DD]  # all by default
 rudd analyze [--ticker SPY] [--from … --to …] [--json|--pretty]
 ```
 `analyze` gives win rate, net/avg/gross P&L, fees, avg win/loss, profit factor,
