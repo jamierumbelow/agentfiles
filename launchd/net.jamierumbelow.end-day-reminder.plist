@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>net.jamierumbelow.end-day-reminder</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/bin/osascript</string>
+		<string>-e</string>
+		<string>display notification "Time to wrap up: run /end-day in Claude Code" with title "End of day" sound name "Glass"</string>
+	</array>
+	<key>StartCalendarInterval</key>
+	<dict>
+		<key>Hour</key>
+		<integer>17</integer>
+		<key>Minute</key>
+		<integer>0</integer>
+	</dict>
+</dict>
+</plist>

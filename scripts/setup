@@ -32,6 +32,20 @@ for repo in "$WORKSPACE"/repos/*/; do
     fi
 done
 
+# launchd agents — copied (not symlinked; launchd is unreliable with symlinked
+# plists), then (re)loaded so plist changes take effect on re-run
+mkdir -p "$HOME/Library/LaunchAgents"
+for plist in "$AGENTFILES"/launchd/*.plist; do
+    [ -f "$plist" ] || continue
+    name="$(basename "$plist")"
+    label="${name%.plist}"
+    target="$HOME/Library/LaunchAgents/$name"
+    cp "$plist" "$target"
+    launchctl bootout "gui/$(id -u)/$label" 2>/dev/null || true
+    launchctl bootstrap "gui/$(id -u)" "$target"
+    info "Loaded launchd agent $label"
+done
+
 # global skills & commands
 add-all-skills
 add-all-commands
