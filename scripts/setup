@@ -23,6 +23,7 @@ symlink "$AGENTFILES/codex/config.toml" "$HOME/.codex/config.toml"
 agentsmd-symlink "global" "$HOME/.codex"
 agentsmd-symlink "global" "$HOME/.claude"
 agentsmd-symlink "vault" "$WORKSPACE/vault"
+agentsmd-symlink "research" "$WORKSPACE/research"
 
 # repos — auto-symlink any repo that has a matching agentsmd config
 for repo in "$WORKSPACE"/repos/*/; do
