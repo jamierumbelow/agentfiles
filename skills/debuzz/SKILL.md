@@ -13,7 +13,7 @@ Original skill: https://github.com/adnanakil/nobuzz
 
 `/debuzz [mode] [text]` — both parts optional.
 
-- **mode**: if the first word of the arguments is `colleague`, `manager`, or `director`, that's the mode. Otherwise the mode is `colleague`.
+- **mode**: if the first word of the arguments is `colleague`, `manager`, `director`, or `vault`, that's the mode. Otherwise the mode is `colleague`.
 - **text**: whatever remains after the mode word is the text to translate. If empty, translate your own most recent substantive response — the one immediately before the user invoked the skill. Reproduce it faithfully from the conversation, word for word, including code blocks.
 
 Examples: `/debuzz` (colleague mode, last reply) · `/debuzz director` (exec brief of last reply) · `/debuzz manager <pasted text>`.
@@ -25,6 +25,29 @@ Every mode shares the same style rules: plain declarative sentences, no dramatic
 - **colleague** (default) — a competent engineer explaining it to a peer. Keep every technical fact, number, file path, command, and code block exactly intact. Only the style changes, not the substance; do not shorten beyond what removing fluff removes.
 - **manager** — an engineer updating a technical-adjacent manager. Lead with what happened / what was found, why it matters, and what happens next or what's needed. Keep key facts and numbers; drop code blocks, file paths, and implementation mechanics unless one is essential to the point. Target roughly a third of the original length.
 - **director** — an executive brief. Three to five sentences: the outcome, the impact or risk in business terms, and any decision or ask. No code, no file paths, no implementation detail. Assume thirty seconds of attention.
+- **vault** — for agent-written prose being saved into Jamie's Obsidian vault at `~/workspace/vault`. Substance rules are colleague mode's: keep every fact, number, file path, link, and code block intact, and don't shorten beyond what removing fluff removes. What differs is that the vault has its own conventions in `~/workspace/vault/STYLEGUIDE.md`, and a generic rewrite will violate them — agy will happily introduce em dashes and American spellings. So this mode adds the STYLEGUIDE's hard constraints to the prompt (see below), and the result must satisfy both. Not for anything in Jamie's own voice; see the exclusions in `vault/AGENTS.md`.
+
+### The vault constraint block
+
+When running in `vault` mode, append this to the prompt after the audience instructions. These are the mechanical rules from `STYLEGUIDE.md` — the ones a rewrite breaks by accident:
+
+```
+Follow these house style rules exactly, in addition to the above:
+- Never use em dashes. Not as connectors, not as parentheticals, not anywhere. Use a semicolon, comma, parentheses, or restructure the sentence. This rule has no exceptions.
+- British English spelling and conventions throughout (organise, behaviour, licence as noun).
+- Always use the Oxford comma.
+- No emoji.
+- Do not add a top-level `# ` heading; `##` is the highest heading level.
+- Do not add a concluding paragraph that restates what was already said. Stop when the content stops.
+- Cut throat-clearing openings ("In today's world", "It goes without saying", "When it comes to X"), formal transitions ("Furthermore", "Additionally", "Moreover", "It is important to note"), and generic intensifiers ("very", "really", "incredibly", "extremely").
+- Keep honest hedging that does real epistemic work ("I have come to believe", "perhaps", "a little dangerous"); cut filler hedges ("somewhat", "fairly", "arguably", "it's worth noting that").
+- Preserve the grammatical person of the source. If a sentence elides its subject ("Made X", "Audited Y"), keep it elided; do not insert "I" or "We". Never use a passive construction to avoid naming an actor the source names.
+- Leave `[[wiki-links]]`, `#tags`, callout blocks (`> [!flashcard]`), and timestamps byte-identical.
+```
+
+The grammatical-person line earns its place. Without it, the STYLEGUIDE's "name the actor" rule makes agy rewrite subject-less worklog entries ("Made `/debuzz` a standing rule…") into first person ("I made…"), which is the wrong register for the worklog. Tested against a real entry: with the line, the elided subject survives.
+
+Check the output for em dashes and American spellings before saving; that is the failure mode worth one `grep`. If agy returned an em dash, fix it yourself rather than re-running — a targeted punctuation fix is not a stylistic rewrite, so it doesn't reintroduce the voice being removed.
 
 ## How
 
@@ -43,6 +66,8 @@ Every mode shares the same style rules: plain declarative sentences, no dramatic
    ```
 
    For `manager` and `director`, replace the audience sentence and the keep-everything clause with that mode's instructions from the Modes section (audience, what to keep vs. drop, target length), keeping the style-rules sentence and the "output only the rewritten text" closer unchanged.
+
+   For `vault`, keep colleague mode's prompt as-is and insert the vault constraint block between the audience instructions and the "output only the rewritten text" closer.
 
    Keep `-p` last. agy's parser takes the very next token as `-p`'s value, so `agy -p --disable-slash-commands "…"` silently treats the flag as the prompt and drops the real one (it errors with "took --disable-slash-commands as its prompt"). Every other flag goes before `-p`.
 

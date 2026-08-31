@@ -15,6 +15,35 @@ This is an Obsidian vault containing personal notes, writing, project planning, 
 - Use `[[wiki-links]]` when referencing other notes in the vault — especially when mentioning a file you've just created or edited. Prefer the bare note name (e.g. `[[silly-research-ideas]]`) over the full path.
 - Do **not** add an `# Title` heading at the top of new pages. Obsidian displays the filename as the page title, so a leading H1 is redundant. Start the file body directly with content or a frontmatter block, and use `##` as the highest heading level within the page body.
 - **When creating or editing vault pages**, invoke the `vault` skill for full guidelines before writing.
+- **Debuzz agent-written prose before saving** — see below.
+
+## Style: debuzz pass
+
+Prose you generate drifts into the assistant register: dramatic framing, suspense, listicle energy. `[[STYLEGUIDE]]` says what good looks like and the `prose-review` skill checks against it, but both are you marking your own homework. So run agent-written prose through the `debuzz` skill in **`vault` mode** and save what comes back. That mode is colleague mode plus the STYLEGUIDE's hard constraints, because a generic rewrite reintroduces em dashes and American spellings.
+
+Save the returned text verbatim. Do not re-polish it afterwards; that is how the voice gets back in. The one exception is a mechanical fix for something agy broke — an em dash, a US spelling, a mangled `[[wiki-link]]`.
+
+### Where it applies
+
+- **`## Worklog` entries** in `daily/`, which are the machine layer and the highest-volume agent prose in the vault.
+- **Standalone prose pages** you drafted: `writing/`, `snippets/`, `personal/`, `links/`, project notes, and research dumps filed anywhere outside the directories excluded below.
+
+### Where it must never apply
+
+These are Jamie's own words. Rewriting them destroys the only thing that makes them worth having, and that damage is not visible after the fact.
+
+- **`## Journal`** in `daily/` — verbatim by rule. The debuzz pass does not soften this; it is the same prohibition stated twice, deliberately.
+- **`evergreen/`** — Jamie's ideas in development, including any verbatim dated words cross-filed from the Journal.
+- **`personhood/`** — his stated positions on mission, worldview, mistakes, and goals.
+- **`jamierumbelow.net/`** — published and site content in his authored voice.
+- **`## Flashcards`** — Jamie approves the phrasing during `/end-day`; once approved it is settled.
+- **Quoted material** anywhere — highlights, excerpts, and anything attributed to a named person stays in that person's words.
+
+### When to skip it as pointless
+
+Not everything agent-written is prose worth an agy round-trip. Skip single-line `## Todos`, status and checkbox changes, frontmatter edits, link-list maintenance, and any edit under roughly a sentence. There is no register to fix and the call costs ten seconds.
+
+If `agy` is unavailable, save the prose as written and say so. Never substitute your own rewrite; the whole point is an editor that does not share your habits.
 
 ## Specific Directories
 

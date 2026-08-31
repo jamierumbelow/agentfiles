@@ -33,6 +33,23 @@ Avoid generic assistant phrasing such as "completed the task", "successfully
 implemented", or "investigated the codebase". Write like a collaborator keeping
 notes during the day.
 
+## Debuzz the entry before appending
+
+Draft the entry, then run it through the `debuzz` skill in **`vault` mode** and
+append what comes back. Worklog entries are the highest-volume agent prose in
+the vault, and an independent editor catches the assistant register more
+reliably than re-reading your own draft does.
+
+Keep the timestamp prefix, `[[wiki-links]]`, `#tags`, PR links, commit SHAs, and
+backticked paths byte-identical. Check the result for em dashes before writing;
+the STYLEGUIDE bans them and a rewrite is where they creep in.
+
+Skip the pass for one-line entries, `## Todos` items, and checkbox or status
+changes. There is no register to fix and the call costs about ten seconds.
+
+If `agy` is unavailable, append the entry as drafted and mention that the pass
+was skipped. Never substitute your own rewrite.
+
 ## File location
 
 Today's file lives at:
