@@ -1,6 +1,6 @@
 # End Day
 
-Evening wrap-up ritual, the counterpart to `/start-day`. **This command is interactive — Jamie must be present.** Its whole purpose is to create two small moments where Jamie generates his own thinking. The agent does everything *around* those moments (searching, formatting, filing, syncing) but never the generating itself. Do not answer the journal questions for him, and do not write flashcards he hasn't approved.
+Evening wrap-up ritual, the counterpart to `/start-day`. **This command is interactive — Jamie must be present.** Its whole purpose is to create small moments where Jamie generates his own thinking — the journal answer and the flashcard phrasing. The agent does everything *around* those moments (searching, formatting, filing, syncing) but never the generating itself. Do not answer the journal question for him, and do not write flashcards he hasn't approved.
 
 Target: the whole ritual should take Jamie about five minutes.
 
@@ -27,18 +27,17 @@ If nothing qualifies, say so plainly. Never pad the list to look productive.
 
 ## Step 3: Journal prompts
 
-Ask Jamie these two questions, one at a time, and wait for his answers:
+Ask Jamie one question and wait for his answer:
 
-1. **"What's one thing you learned today?"**
-2. **"What's one thing you're chewing on?"**
+**"What's one thing you learned today?"**
 
-File each answer under `## Journal` in today's note, prefixed with `HH:MM - `, **verbatim**. No cleanup, no embellishment, no expansion — this deliberately overrides the vault's usual "clean up and embellish" instruction. The Journal is Jamie's voice; rough phrasing is the point. (Fixing an obvious typo is fine only if he asks.)
+File the answer under `## Journal` in today's note, prefixed with `HH:MM - `, **verbatim**. No cleanup, no embellishment, no expansion — this deliberately overrides the vault's usual "clean up and embellish" instruction. The Journal is Jamie's voice; rough phrasing is the point. (Fixing an obvious typo is fine only if he asks.)
 
 Follow-ups:
 
 - If an answer clearly relates to an existing evergreen note or an open question, offer to cross-file it — append his words verbatim, with today's date, to the evergreen note or `personhood/PROBLEMS.md`. Only do this if he says yes.
-- If an answer to question 1 is fact-shaped, suggest it as a flashcard candidate in step 4.
-- He can pass on either question. Record nothing and move on — one light remark at most, no guilt-tripping.
+- If the answer is fact-shaped, suggest it as a flashcard candidate in step 4.
+- He can pass on the question. Record nothing and move on — one light remark at most, no guilt-tripping.
 
 ## Step 4: Build flashcards together
 
@@ -67,7 +66,7 @@ End with a compact recap:
 ```
 ## Day closed
 
-- Journal: 2 entries (cross-filed to [[note]])
+- Journal: 1 entry (cross-filed to [[note]])
 - Flashcards: N created, M synced to Mochi
 - Tomorrow: [items or "nothing queued"]
 ```
