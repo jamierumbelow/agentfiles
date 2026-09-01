@@ -14,6 +14,7 @@
       "~/workspace/vault"
     ]
   },
+  "model": "opus[1m]",
   "hooks": {
     "SessionStart": [
       {
@@ -57,6 +58,6 @@
       ]
     }
   },
-  "skipDangerousModePermissionPrompt": true,
-  "model": "opus[1m]"
+  "effortLevel": "high",
+  "skipDangerousModePermissionPrompt": true
 }

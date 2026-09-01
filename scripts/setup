@@ -23,6 +23,7 @@ symlink "$AGENTFILES/codex/config.toml" "$HOME/.codex/config.toml"
 agentsmd-symlink "global" "$HOME/.codex"
 agentsmd-symlink "global" "$HOME/.claude"
 agentsmd-symlink "vault" "$WORKSPACE/vault"
+agentsmd-symlink "research" "$WORKSPACE/research"
 
 # repos — auto-symlink any repo that has a matching agentsmd config
 for repo in "$WORKSPACE"/repos/*/; do
@@ -30,6 +31,20 @@ for repo in "$WORKSPACE"/repos/*/; do
     if [ -d "$AGENTFILES/agentsmd/$name" ]; then
         agentsmd-symlink "$name" "$repo"
     fi
+done
+
+# launchd agents — copied (not symlinked; launchd is unreliable with symlinked
+# plists), then (re)loaded so plist changes take effect on re-run
+mkdir -p "$HOME/Library/LaunchAgents"
+for plist in "$AGENTFILES"/launchd/*.plist; do
+    [ -f "$plist" ] || continue
+    name="$(basename "$plist")"
+    label="${name%.plist}"
+    target="$HOME/Library/LaunchAgents/$name"
+    cp "$plist" "$target"
+    launchctl bootout "gui/$(id -u)/$label" 2>/dev/null || true
+    launchctl bootstrap "gui/$(id -u)" "$target"
+    info "Loaded launchd agent $label"
 done
 
 # global skills & commands

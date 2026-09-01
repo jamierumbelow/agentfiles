@@ -24,6 +24,12 @@ Look at the last 5 daily notes (excluding today). Collect any unchecked `- [ ]` 
 
 If there are unchecked items, deduplicate them and add them all to today's `## Todos` section (after any existing todos). Mention them in the briefing summary so Jamie knows what was pulled in.
 
+## Step 3.5: Check whether yesterday's /end-day ran
+
+Look at the most recent daily note before today (the same one from Step 2). If its `## Journal` section is empty or missing, Jamie skipped `/end-day` — and he has explicitly asked to be told off for this. Include a short, genuine scolding in the briefing (one or two sentences, pointed but good-humoured) reminding him the 5pm reminder exists for a reason. If several recent days in a row have empty Journals, say so — the streak is part of the telling-off.
+
+If yesterday's Journal has entries, skip this silently.
+
 ## Step 4: Fetch today's calendar
 
 Run the precompiled EventKit binary:
@@ -120,6 +126,9 @@ After all steps are complete, present a formatted summary to the user:
 
 ### Calendar
 [all-day events, then timed events in order]
+
+### End-day check
+[scolding if yesterday's Journal is empty; omit section entirely if it ran]
 
 ### Todos pulled forward
 [items from yesterday's Tomorrow section, if any]

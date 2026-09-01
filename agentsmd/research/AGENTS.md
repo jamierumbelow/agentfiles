@@ -47,6 +47,27 @@ research/
 - Topic pages do not need the `status` field but should have `created` and a brief description at the top.
 - Write in clear, direct prose. Prefer specificity over generality. Include concrete examples, data points, and quotations where available.
 - When a note cites a claim, link or attribute the source inline (e.g. "According to [[scaling-laws-for-neural-language-models]], ...").
+- **Debuzz the prose before saving.** Every note in this vault is agent-written, so it drifts into the assistant register — dramatic framing, suspense, listicle energy — and Jamie isn't editing it out by hand. Run the prose through the `debuzz` skill in `vault` mode and save the returned text. See below.
+- British English spelling throughout. `agy` will Americanise a rewrite if not told otherwise, which is one reason the debuzz pass uses `vault` mode.
+
+## Style: debuzz pass
+
+Applies when creating a new note or substantially rewriting an existing one's prose, in `notes/`, `sources/`, or `open-questions/`.
+
+1. Write the note first, as normal.
+2. Pass the **body prose only** through the `debuzz` skill in `vault` mode — an independent editor that doesn't share the original's stylistic habits, which is the whole point of not just re-reading it yourself. Use `vault` mode, not plain `colleague`: it carries the British English and punctuation constraints that a generic rewrite breaks. Observed in practice on 31 August 2026, agy Americanised the spelling of a whole note under plain colleague mode.
+3. Save the returned text verbatim. Do not re-polish it afterwards; that reintroduces the voice being removed. A mechanical fix for something agy broke is not re-polishing.
+
+**Cut these out of the text before you send it, and paste them back afterwards.** Do not send them and hope; agy has been observed dropping source quotations outright.
+
+- YAML frontmatter.
+- `[[wiki-links]]` — these must survive byte-identical or the vault's link graph breaks. Check them after the rewrite.
+- Verbatim quotations from sources, and any inline attribution.
+- Code blocks, figures, and data tables.
+
+Skip the pass entirely for mechanical edits: `_index.md` updates, adding or removing links on a topic page, status bumps, frontmatter changes. There's no prose to fix and `agy` will happily reword a link list.
+
+If `agy` is unavailable, save the note as written and say so rather than substituting your own rewrite.
 
 ## Maintenance
 
@@ -66,7 +87,7 @@ When Jamie asks for research on a topic:
 2. **Check Readwise** — Search for saved articles and highlights on the topic (`readwise reader-search-documents`, `readwise readwise-search-highlights`).
 3. **Check X bookmarks** — Search for relevant bookmarked tweets (`ft search`).
 4. **Web research** — Search the web to fill gaps, find primary sources, and verify claims.
-5. **Synthesise** — Write one or more notes in `notes/`, linking to sources and topics. Create source pages if a single source is especially rich. Create or update topic pages as needed.
+5. **Synthesise** — Write one or more notes in `notes/`, linking to sources and topics. Create source pages if a single source is especially rich. Create or update topic pages as needed. Run each note's prose through the debuzz pass before saving.
 6. **Surface open questions** — If the research raises unresolved questions or contradictions, create entries in `open-questions/` and link them from the relevant notes.
 7. **Update the index** — Add new topic pages to `_index.md`.
 
@@ -78,6 +99,7 @@ When importing content from Readwise or X bookmarks:
 - Extract distinct ideas into individual notes in `notes/`, linking back to the source.
 - File each note under relevant topics, creating new topic pages if a cluster emerges.
 - Do not dump raw highlights as notes. Synthesise, contextualise, and connect them.
+- Debuzz your synthesis before saving, but never the quoted highlights themselves — those stay in the author's words.
 
 ## Tools
 
