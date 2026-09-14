@@ -1,9 +1,9 @@
 personality = "pragmatic"
-model = "gpt-5.5"
-model_reasoning_effort = "xhigh"
+model = "gpt-6-astra"
+model_reasoning_effort = "high"
 commit_attribution = ""
 suppress_unstable_features_warning = true
-service_tier = "fast"
+service_tier = "default"
 
 notify = ["/Users/james.rumbelow/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
 
@@ -117,13 +117,17 @@ trust_level = "trusted"
 [projects."/Users/james.rumbelow/workspace/repos/world-id-zoom"]
 trust_level = "trusted"
 
+[projects."/Users/james.rumbelow/Documents/Codex/2026-09-11/referenced-chatgpt-conversation-this-is-an"]
+trust_level = "trusted"
+
+[projects."/Users/james.rumbelow/workspace/repos/fapps"]
+trust_level = "trusted"
+
 [marketplaces.openai-bundled]
-last_updated = "2026-08-20T22:34:07Z"
 source_type = "local"
 source = "/Users/james.rumbelow/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-08-27T15:47:21Z"
 source_type = "local"
 source = "/Users/james.rumbelow/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
@@ -163,12 +167,19 @@ enabled = true
 [plugins."visualize@openai-bundled"]
 enabled = true
 
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."unified-computer-use@openai-bundled"]
+enabled = true
+
 [memories]
 generate_memories = false
 use_memories = false
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
+gpt-6-astra = 4
 
 [desktop]
 followUpQueueMode = "queue"
@@ -185,13 +196,14 @@ NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_n
 NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/james.rumbelow/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 CODEX_HOME = "/Users/james.rumbelow/.codex"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e86beb821b9afc846211798e0113bd4b9e79312dfcd135eb447bdb154f64071"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
-NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
-NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
-NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS through Computer Use."
+BROWSER_USE_TINYSKY_ENABLED = "1"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.803.61601"
+BROWSER_USE_CODEX_APP_VERSION = "26.901.51231"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/james.rumbelow/.codex/plugins/cache/openai-bundled/browser/26.901.51231/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
 SKY_CUA_SERVICE_PATH = "/Users/james.rumbelow/.codex/computer-use/Codex Computer Use.app"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
 
@@ -201,10 +213,12 @@ args = ["mcp"]
 cwd = "."
 enabled = false
 
+[mcp_servers.datadog]
+url = "https://mcp.datadoghq.com/api/unstable/mcp-server/mcp"
+enabled = true
+
 [shell_environment_policy.set]
-BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e86beb821b9afc846211798e0113bd4b9e79312dfcd135eb447bdb154f64071"
-NODE_REPL_TRUSTED_CODE_PATHS = "/Users/james.rumbelow/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 
 [hooks.state]
 
