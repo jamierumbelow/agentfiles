@@ -19,8 +19,8 @@ local CONFIG = {
   heading              = "## Journal",   -- exact heading line to append under
   appendAtEndOfSection = true,           -- false = insert directly beneath the heading
   createIfMissing      = true,           -- create today's note (and heading) if absent
-  bulletPrefix         = "- ",
-  timestamp            = true,           -- prefix entries with HH:MM
+  timestamp            = true,           -- prefix entries with "HH:MM - "
+  timeSeparator        = " - ",          -- between the timestamp and the note text
   hotkey               = { { "cmd", "shift" }, "n" },
   width                = 440,
   height               = 220,
@@ -146,18 +146,22 @@ local function insertIntoSection(content, entryLines)
     table.insert(lines, insertAt, entryLines[k])
   end
 
+  -- Blank line between the previous content and this entry, so entries don't run together.
+  if insertAt > 1 and trim(lines[insertAt - 1]) ~= "" then
+    table.insert(lines, insertAt, "")
+  end
+
   return table.concat(lines, "\n") .. "\n"
 end
 
 local function buildEntry(text)
   local body = splitLines(trim(text))
   if #body == 0 then return nil end
-  local prefix = CONFIG.bulletPrefix
-  if CONFIG.timestamp then prefix = prefix .. os.date("%H:%M") .. " " end
+  local prefix = ""
+  if CONFIG.timestamp then prefix = os.date("%H:%M") .. CONFIG.timeSeparator end
   local out = { prefix .. body[1] }
   for i = 2, #body do
-    -- continuation lines are indented so Obsidian treats them as part of the bullet
-    table.insert(out, string.rep(" ", #CONFIG.bulletPrefix) .. body[i])
+    table.insert(out, body[i])
   end
   return out
 end
@@ -221,9 +225,17 @@ local function hideBox()
   if box then box:hide() end
 end
 
+-- hs.json.encode only accepts tables, so string literals are escaped by hand.
+local function jsString(s)
+  local escaped = s:gsub('[\\"]', '\\%0')
+                   :gsub("\n", "\\n")
+                   :gsub("\r", "\\r")
+                   :gsub("%c", function(c) return ("\\u%04x"):format(c:byte()) end)
+  return '"' .. escaped .. '"'
+end
+
 local function setTextareaValue(value)
-  local encoded = hs.json.encode(value)
-  box:evaluateJavaScript(("document.getElementById('t').value = %s;"):format(encoded))
+  box:evaluateJavaScript(("document.getElementById('t').value = %s;"):format(jsString(value)))
 end
 
 ucc:setCallback(function(msg)
@@ -231,7 +243,9 @@ ucc:setCallback(function(msg)
   if body.action == "commit" then
     if commit(body.text or "") then
       hs.settings.set(DRAFT_KEY, "")
-      setTextareaValue("")
+      -- The note is already on disk; a failure clearing the box must not keep it open.
+      local ok, err = pcall(setTextareaValue, "")
+      if not ok then print("[quicknote] could not clear textarea: " .. tostring(err)) end
       hideBox()
     end
   elseif body.action == "hide" then
@@ -297,7 +311,7 @@ local function showBox()
     local draft = hs.settings.get(DRAFT_KEY)
     if draft and draft ~= "" then
       box:evaluateJavaScript(
-        ("if(!document.getElementById('t').value){document.getElementById('t').value=%s;}"):format(hs.json.encode(draft)))
+        ("if(!document.getElementById('t').value){document.getElementById('t').value=%s;}"):format(jsString(draft)))
     end
     box:evaluateJavaScript("focusBox();")
   end)
