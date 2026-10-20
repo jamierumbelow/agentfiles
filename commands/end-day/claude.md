@@ -1,6 +1,6 @@
 # End Day
 
-Evening wrap-up ritual, the counterpart to `/start-day`. **This command is interactive — Jamie must be present.** Its whole purpose is to create small moments where Jamie generates his own thinking — the journal answer and the flashcard phrasing. The agent does everything *around* those moments (searching, formatting, filing, syncing) but never the generating itself. Do not answer the journal question for him, and do not write flashcards he hasn't approved.
+Evening wrap-up ritual, the counterpart to `/start-day`. **This command is interactive — Jamie must be present.** Its whole purpose is to create small moments where Jamie generates his own thinking — the journal answer and the flashcard phrasing. The agent does everything _around_ those moments (searching, formatting, filing, syncing) but never the generating itself. Do not answer the journal question for him, and do not write flashcards he hasn't approved.
 
 Target: the whole ritual should take Jamie about five minutes.
 
@@ -8,12 +8,14 @@ Target: the whole ritual should take Jamie about five minutes.
 
 The daily file lives at `~/workspace/vault/daily/YYYY/MM/YYYY-MM-DD.md`. If it doesn't exist, create it from `~/workspace/vault/templates/daily.md` as `/start-day` does (month directory, `{{time}}` replaced).
 
+Read through the day's note, paying particular attention to the `## Journal` section. Jamie logs to this section over the course of the day, and may add todos or things to remember here. Read through it and ensure that you capture everything relevant; Jamie would much rather see more noise than lose some signal.
+
 ## Step 2: Harvest SRS candidates (silently, before talking to Jamie)
 
 Gather candidate **facts worth remembering** from today's sources. Run these in parallel where possible:
 
 - Today's daily note (worklog entries often contain gotchas and mechanisms)
-- Today's sessions across coding agents, via the `cass` skill — look for things *learned*: API quirks, mechanisms, numbers, names, sharp distinctions, mistakes that taught something
+- Today's sessions across coding agents, via the `cass` skill — look for things _learned_: API quirks, mechanisms, numbers, names, sharp distinctions, mistakes that taught something
 - Recent Readwise highlights (last day or two), via the `readwise` skill
 - Anything else Jamie flagged during the day as worth remembering
 

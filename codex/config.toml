@@ -127,6 +127,12 @@ trust_level = "trusted"
 [projects."/Users/jamierumbelow/workspace/repos/amplify-site"]
 trust_level = "trusted"
 
+[projects."/Users/james.rumbelow/Documents/Codex/2026-09-11/referenced-chatgpt-conversation-this-is-an"]
+trust_level = "trusted"
+
+[projects."/Users/james.rumbelow/workspace/repos/fapps"]
+trust_level = "trusted"
+
 [marketplaces.openai-bundled]
 source_type = "local"
 source = "/Users/jamierumbelow/.codex/.tmp/bundled-marketplaces/openai-bundled"
@@ -186,7 +192,7 @@ use_memories = false
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
-gpt-6-astra = 3
+gpt-6-astra = 4
 
 [desktop]
 followUpQueueMode = "queue"
@@ -219,6 +225,10 @@ command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.
 args = ["mcp"]
 cwd = "."
 enabled = false
+
+[mcp_servers.datadog]
+url = "https://mcp.datadoghq.com/api/unstable/mcp-server/mcp"
+enabled = true
 
 [shell_environment_policy.set]
 NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e86beb821b9afc846211798e0113bd4b9e79312dfcd135eb447bdb154f64071"
