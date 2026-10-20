@@ -1,11 +1,12 @@
 personality = "pragmatic"
-model = "gpt-5.5"
-model_reasoning_effort = "xhigh"
+model = "gpt-6-astra"
+model_reasoning_effort = "high"
 commit_attribution = ""
 suppress_unstable_features_warning = true
-service_tier = "fast"
+service_tier = "default"
 
-notify = ["/Users/james.rumbelow/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+
+notify = ["/Users/jamierumbelow/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
 
 [features]
 multi_agent = true
@@ -117,19 +118,26 @@ trust_level = "trusted"
 [projects."/Users/james.rumbelow/workspace/repos/world-id-zoom"]
 trust_level = "trusted"
 
+[projects."/Users/jamierumbelow/workspace/repos/llm-inference-nonsense"]
+trust_level = "trusted"
+
+[projects."/Users/jamierumbelow/workspace/repos/tabula"]
+trust_level = "trusted"
+
+[projects."/Users/jamierumbelow/workspace/repos/amplify-site"]
+trust_level = "trusted"
+
 [marketplaces.openai-bundled]
-last_updated = "2026-08-20T22:34:07Z"
 source_type = "local"
-source = "/Users/james.rumbelow/.codex/.tmp/bundled-marketplaces/openai-bundled"
+source = "/Users/jamierumbelow/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-08-27T15:47:21Z"
 source_type = "local"
-source = "/Users/james.rumbelow/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+source = "/Users/jamierumbelow/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.ponytail]
-last_updated = "2026-08-21T17:07:04Z"
-last_revision = "2ed6c52c9d7e5e56942508591085fd45dea277d3"
+last_updated = "2026-09-06T19:55:48Z"
+last_revision = "974d940a1c5344210874150b98ff0d2c861fab6a"
 source_type = "git"
 source = "https://github.com/DietrichGebert/ponytail.git"
 
@@ -163,12 +171,22 @@ enabled = true
 [plugins."visualize@openai-bundled"]
 enabled = true
 
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."unified-computer-use@openai-bundled"]
+enabled = true
+
+[plugins."unified-computer-use@openai-bundled".mcp_servers.cua_repl.tools.js]
+approval_mode = "approve"
+
 [memories]
 generate_memories = false
 use_memories = false
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
+gpt-6-astra = 3
 
 [desktop]
 followUpQueueMode = "queue"
@@ -183,16 +201,17 @@ startup_timeout_sec = 120
 NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
 NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
-NODE_REPL_TRUSTED_CODE_PATHS = "/Users/james.rumbelow/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
-CODEX_HOME = "/Users/james.rumbelow/.codex"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e86beb821b9afc846211798e0113bd4b9e79312dfcd135eb447bdb154f64071"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/jamierumbelow/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+CODEX_HOME = "/Users/jamierumbelow/.codex"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
-NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
-NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
-NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS through Computer Use."
+BROWSER_USE_TINYSKY_ENABLED = "1"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.803.61601"
-SKY_CUA_SERVICE_PATH = "/Users/james.rumbelow/.codex/computer-use/Codex Computer Use.app"
+BROWSER_USE_CODEX_APP_VERSION = "26.901.20858"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/jamierumbelow/.codex/plugins/cache/openai-bundled/browser/26.901.20858/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+SKY_CUA_SERVICE_PATH = "/Users/jamierumbelow/.codex/computer-use/Codex Computer Use.app"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
 
 [mcp_servers.computer-use]
@@ -202,11 +221,12 @@ cwd = "."
 enabled = false
 
 [shell_environment_policy.set]
-BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e86beb821b9afc846211798e0113bd4b9e79312dfcd135eb447bdb154f64071"
-NODE_REPL_TRUSTED_CODE_PATHS = "/Users/james.rumbelow/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 
 [hooks.state]
 
 [hooks.state."/Users/james.rumbelow/.codex/hooks.json:stop:0:0"]
 trusted_hash = "sha256:23fce454ca17c01b5c8a5578f73d7f9e5d44d94c8a5b08372cf8d4062510f7d9"
+
+[hooks.state."browser@openai-bundled:plugin.json#hooks[0]:stop:0:0"]
+trusted_hash = "sha256:317a07045dfc95aef2e80c55428a2f817e2768be867e3b1ef29a73da8636ae7f"
