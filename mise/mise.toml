@@ -76,11 +76,19 @@ linux-arm64 = { asset_pattern = "rtk-aarch64-unknown-linux-gnu.tar.gz" }
 
 # Left behind by the old scripts/setup. Drop once every machine has bootstrapped.
 "~/workspace/mise.toml" = { mode = "absent" }
+"~/Library/LaunchAgents/net.jamierumbelow.end-day-reminder.plist" = { mode = "absent" }
 
 # Skills and commands are linked per tool (and commands renamed per tool), which
 # [dotfiles] can't express, so the scripts do it after the links above exist.
 [bootstrap.hooks]
+# The old reminder job stays loaded after its plist is removed; drop with the entries above.
+pre-dotfiles = "launchctl bootout gui/$(id -u)/net.jamierumbelow.end-day-reminder 2>/dev/null || true"
 post-dotfiles = [
   "~/workspace/repos/agentfiles/scripts/add-all-skills.sh",
   "~/workspace/repos/agentfiles/scripts/add-all-commands.sh",
 ]
+
+[bootstrap.macos.launchd.agents.end-day-reminder]
+program = "/usr/bin/osascript"
+args = ["-e", 'display notification "Time to wrap up: run /end-day in Claude Code" with title "End of day" sound name "Glass"']
+start_calendar_interval = { hour = 17, minute = 0 }
