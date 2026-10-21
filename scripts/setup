@@ -17,6 +17,7 @@ symlink "$AGENTFILES/scripts/add-all-skills.sh" "$HOME/bin/add-all-skills"
 symlink "$AGENTFILES/scripts/add-all-commands.sh" "$HOME/bin/add-all-commands"
 
 # configs
+symlink "$AGENTFILES/workspace/mise.toml" "$WORKSPACE/mise.toml"
 symlink "$AGENTFILES/codex/config.toml" "$HOME/.codex/config.toml"
 
 # global
