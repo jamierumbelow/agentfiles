@@ -49,5 +49,5 @@ for plist in "$AGENTFILES"/launchd/*.plist; do
 done
 
 # global skills & commands
-add-all-skills
-add-all-commands
+"$AGENTFILES/scripts/add-all-skills.sh"
+"$AGENTFILES/scripts/add-all-commands.sh"
