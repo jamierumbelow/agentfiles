@@ -11,3 +11,15 @@ If you spot a clear, well-evidenced fix (not a vague hunch), you can run the `sk
 ## Pull Requests
 
 When coding, if Jamie asks you to create a pull request please do not include "[codex]" at the beginning of the title. If the PR contains one commit, you can just use the commit message.
+
+## Worktrees
+
+All git worktrees live under `~/workspace/repos-workspaces/<repo>/<branch>`, where `<branch>` is the branch name with `/` replaced by `-`. Never create them inside the repo itself, in `/tmp`, next to the repo in `~/workspace/repos`, or anywhere else, and prefer this over any tool that picks its own location.
+
+```bash
+git -C ~/workspace/repos/<repo> worktree add ~/workspace/repos-workspaces/<repo>/<branch-slug> -b <branch>
+```
+
+- Run `git worktree list` first. If a worktree for the branch already exists, use it instead of making another.
+- When the branch is merged or abandoned, remove it with `git worktree remove <path>`, then `git worktree prune`. Delete the empty `<repo>` directory if it was the last one.
+- Never remove a worktree with uncommitted or unpushed changes, or one you didn't create in this session, without asking Jamie first.
