@@ -1,3 +1,6 @@
+# agentfiles' part of the machine setup. Linked to ~/.config/mise/conf.d/agentfiles/
+# by dotfiles, and applied with `mise bootstrap`.
+
 [tools]
 # runtimes
 node = "26.12.0"
@@ -55,20 +58,3 @@ macos-x64 = { asset_pattern = "rtk-x86_64-apple-darwin.tar.gz" }
 linux-x64 = { asset_pattern = "rtk-x86_64-unknown-linux-musl.tar.gz" }
 linux-arm64 = { asset_pattern = "rtk-aarch64-unknown-linux-gnu.tar.gz" }
 
-# Host packages, installed with `mise bootstrap packages apply` (no Homebrew
-# needed; mise writes into the Homebrew prefix itself). Existing installs are
-# adopted rather than replaced.
-[bootstrap.brew]
-adopt = true
-
-[bootstrap.packages]
-"brew:libpq" = "latest"
-"brew-cask:visual-studio-code" = { os = "macos" }
-"brew-cask:docker-desktop" = { os = "macos" }
-"brew-cask:tableplus" = { os = "macos" }
-"brew-cask:chatgpt" = { os = "macos" }
-"brew-cask:obsidian" = { os = "macos" }
-"brew-cask:hammerspoon" = { os = "macos" }
-"brew-cask:ghostty" = { os = "macos" }
-"brew-cask:raycast" = { os = "macos" }
-"brew-cask:rectangle" = { os = "macos" }
