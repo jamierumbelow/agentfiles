@@ -1,4 +1,6 @@
 {
+  "theme": "auto",
+  "fastMode": true,
   "attribution": {
     "commit": "",
     "pr": ""
