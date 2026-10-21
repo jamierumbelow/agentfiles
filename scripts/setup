@@ -18,6 +18,7 @@ symlink "$AGENTFILES/scripts/add-all-commands.sh" "$HOME/bin/add-all-commands"
 
 # configs
 symlink "$AGENTFILES/workspace/mise.toml" "$WORKSPACE/mise.toml"
+symlink "$AGENTFILES/claude/settings.json" "$HOME/.claude/settings.json"
 symlink "$AGENTFILES/codex/config.toml" "$HOME/.codex/config.toml"
 
 # global
