@@ -8,6 +8,8 @@ The daily file lives at `~/workspace/vault/daily/YYYY/MM/YYYY-MM-DD.md`. Use `da
 
 If today's file does not exist, create the month directory (`mkdir -p`) and copy the template from `~/workspace/vault/templates/daily.md`, replacing `{{time}}` with the current `HH:MM`.
 
+If the template is missing (e.g. the vault is still syncing on a new machine), create the file with empty `## Todos`, `## Tomorrow`, `## Journal` and `## Worklog` sections instead, and mention it in the briefing.
+
 If it already exists, note that and move on.
 
 ## Step 2: Pull forward yesterday's "Tomorrow" items
@@ -32,42 +34,27 @@ If yesterday's Journal has entries, skip this silently.
 
 ## Step 4: Fetch today's calendar
 
-Run the precompiled EventKit binary:
+Use the Google Calendar MCP connector to list today's events (midnight to midnight, local time) across all of Jamie's calendars. Include each event's time, title, and whether it has other attendees or a video link.
 
-```bash
-~/.claude/bin/calendar-today
-```
-
-This reads the local calendar cache via EventKit — fast and doesn't depend on Calendar.app being responsive. If the binary is missing, recompile it:
-
-```bash
-swiftc -O -o ~/.claude/bin/calendar-today ~/.claude/bin/calendar-today.swift
-```
+If the connector isn't connected or returns an error, skip this step and note it in the briefing as "calendar: not connected".
 
 Format the output for the briefing:
-- Events with `00:00-23:59` are all-day events; list them separately
+- List all-day events separately
 - Sort timed events chronologically
+- Skip declined events
 - Skip holiday calendar noise (public holidays, religious observances) unless they're relevant to the user's country (UK/US)
 
-## Step 5: Email triage via letterhead
+## Step 5: Email triage via Gmail
 
-### 5a: Sync and health check
+If the Gmail MCP connector isn't connected or returns an error, skip this entire step and note it in the briefing as "email: not connected".
 
-Run `letterhead sync` to pull new messages, then `letterhead status --json` to confirm the archive is healthy. Note the total message count and last sync time.
+### 5a: Fetch recent emails
 
-If `letterhead` is not installed or returns an error (e.g. exit code 6 for not initialized), skip this entire step and note it in the briefing as "letterhead: not configured".
+Check what day of the week it is. If it's Monday, look back to Friday; otherwise look back to yesterday. Search the inbox for threads since that date (Gmail query `in:inbox after:YYYY/MM/DD`), up to about 50 threads.
 
-### 5b: Fetch recent emails
+### 5b: Read and triage
 
-Check what day of the week it is. If it's Monday, look back to Friday; otherwise look back to yesterday. Use the appropriate date as the `--after` value:
-
-```bash
-letterhead find --after <lookback date YYYY-MM-DD> --limit 50 --json
-```
-
-### 5c: Read and triage
-
-For the threads returned, read any that look like they might need action (use `letterhead read <read_handle> --view text` to get the body). Use your judgement — prioritise threads that look like they contain requests, deadlines, decisions, or action items over newsletters, notifications, and automated messages.
+For the threads returned, read any that look like they might need action. Use your judgement — prioritise threads that look like they contain requests, deadlines, decisions, or action items over newsletters, notifications, and automated messages.
 
 Categorise each actionable thread into one of:
 
@@ -77,7 +64,7 @@ Categorise each actionable thread into one of:
 
 Skip anything that's clearly noise (automated notifications, marketing, CI alerts).
 
-### 5d: Create todos
+### 5c: Create todos
 
 For each **Today** and **This week** item, add a `- [ ]` todo to today's daily note under `## Todos`. Prefix with `[email]` so they're easy to spot. Include the sender and a short description, e.g.:
 
