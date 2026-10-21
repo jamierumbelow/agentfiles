@@ -15,32 +15,6 @@
     ]
   },
   "model": "opus[1m]",
-  "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"/Users/james.rumbelow/.claude/hooks/gsd-check-update.js\""
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"/Users/james.rumbelow/.claude/hooks/gsd-context-monitor.js\""
-          }
-        ]
-      }
-    ]
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "node \"/Users/james.rumbelow/.claude/hooks/gsd-statusline.js\""
-  },
   "enabledPlugins": {
     "swift-lsp@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true
