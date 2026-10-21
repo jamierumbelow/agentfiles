@@ -58,3 +58,29 @@ macos-x64 = { asset_pattern = "rtk-x86_64-apple-darwin.tar.gz" }
 linux-x64 = { asset_pattern = "rtk-x86_64-unknown-linux-musl.tar.gz" }
 linux-arm64 = { asset_pattern = "rtk-aarch64-unknown-linux-gnu.tar.gz" }
 
+[dotfiles]
+"~/bin/add-skill" = "~/workspace/repos/agentfiles/scripts/add-skill.sh"
+"~/bin/add-command" = "~/workspace/repos/agentfiles/scripts/add-command.sh"
+"~/bin/add-all-skills" = "~/workspace/repos/agentfiles/scripts/add-all-skills.sh"
+"~/bin/add-all-commands" = "~/workspace/repos/agentfiles/scripts/add-all-commands.sh"
+"~/.claude/settings.json" = "~/workspace/repos/agentfiles/claude/settings.json"
+"~/.codex/config.toml" = "~/workspace/repos/agentfiles/codex/config.toml"
+"~/.claude/AGENTS.md" = "~/workspace/repos/agentfiles/agentsmd/global/AGENTS.md"
+"~/.claude/CLAUDE.md" = "~/workspace/repos/agentfiles/agentsmd/global/AGENTS.md"
+"~/.codex/AGENTS.md" = "~/workspace/repos/agentfiles/agentsmd/global/AGENTS.md"
+"~/.codex/CLAUDE.md" = "~/workspace/repos/agentfiles/agentsmd/global/AGENTS.md"
+"~/workspace/vault/AGENTS.md" = "~/workspace/repos/agentfiles/agentsmd/vault/AGENTS.md"
+"~/workspace/vault/CLAUDE.md" = "~/workspace/repos/agentfiles/agentsmd/vault/AGENTS.md"
+"~/workspace/research/AGENTS.md" = "~/workspace/repos/agentfiles/agentsmd/research/AGENTS.md"
+"~/workspace/research/CLAUDE.md" = "~/workspace/repos/agentfiles/agentsmd/research/AGENTS.md"
+
+# Left behind by the old scripts/setup. Drop once every machine has bootstrapped.
+"~/workspace/mise.toml" = { mode = "absent" }
+
+# Skills and commands are linked per tool (and commands renamed per tool), which
+# [dotfiles] can't express, so the scripts do it after the links above exist.
+[bootstrap.hooks]
+post-dotfiles = [
+  "~/workspace/repos/agentfiles/scripts/add-all-skills.sh",
+  "~/workspace/repos/agentfiles/scripts/add-all-commands.sh",
+]
