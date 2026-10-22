@@ -23,3 +23,7 @@ git -C ~/workspace/repos/<repo> worktree add ~/workspace/repos-workspaces/<repo>
 - Run `git worktree list` first. If a worktree for the branch already exists, use it instead of making another.
 - When the branch is merged or abandoned, remove it with `git worktree remove <path>`, then `git worktree prune`. Delete the empty `<repo>` directory if it was the last one.
 - Never remove a worktree with uncommitted or unpushed changes, or one you didn't create in this session, without asking Jamie first.
+
+## Commit attribution
+
+Never add a `Co-Authored-By: Claude` trailer, a "Generated with Claude Code" line, or any other Anthropic attribution to commit messages or PR bodies, including in subagents.
