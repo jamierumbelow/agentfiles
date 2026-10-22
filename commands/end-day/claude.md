@@ -12,12 +12,12 @@ Read through the day's note, paying particular attention to the `## Journal` sec
 
 ## Step 2: Harvest SRS candidates (silently, before talking to Jamie)
 
-Gather candidate **facts worth remembering** from today's sources. Run these in parallel where possible:
+Gather candidate **facts worth remembering** from these sources only:
 
-- Today's daily note (worklog entries often contain gotchas and mechanisms)
-- Today's sessions across coding agents, via the `cass` skill — look for things _learned_: API quirks, mechanisms, numbers, names, sharp distinctions, mistakes that taught something
+- Today's `## Journal` section — Jamie flags anything he wants to remember there
 - Recent Readwise highlights (last day or two), via the `readwise` skill
-- Anything else Jamie flagged during the day as worth remembering
+
+Do **not** mine the `## Worklog` or coding-agent sessions (cass) for candidates. Work findings are the agents' learning, not Jamie's; he rejected every worklog-derived candidate when this was tried.
 
 Distill to a shortlist of **3–7 one-line facts**, each with its source. These are facts, not cards — "Mochi's API allows one concurrent request per account (learned during sync debugging)", not question/answer pairs. Selection criteria:
 
