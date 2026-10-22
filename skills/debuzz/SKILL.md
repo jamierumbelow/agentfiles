@@ -73,7 +73,7 @@ Check the output for em dashes and American spellings before saving; that is the
 
    `--disable-slash-commands` matters: without it agy expands anything in the source text that looks like a slash command. The `$(cat …)` substitution itself is safe — bash does not re-expand the result — so backticks and `$(…)` inside the source text are inert.
 
-   Give the command a generous timeout (120s+); a rewrite usually takes about 10 seconds, but the CLI can be slow to first token. agy's own `--print-timeout` defaults to 5m, which is plenty. If the default model is too slow, `--model gemini-3.7-flash-medium` is a faster choice for a pure rewrite task. Never pass a `claude-*` model (agy offers several) — the whole point is an editor that isn't Claude. `agy models` lists what's currently available.
+   Give the command a generous timeout (120s+); a rewrite usually takes about 10 seconds, but the CLI can be slow to first token. agy's own `--print-timeout` defaults to 5m, which is plenty. If the default model is too slow, `--model gemini-3.8-flash-medium` (shown as "Gemini 3.8 Flash (Medium)" in `agy models`; either form works) is a faster choice for a pure rewrite task. Never pass a `claude-*` model (agy offers several) — the whole point is an editor that isn't Claude. `agy models` lists what's currently available.
 
 3. Output agy's result to the user **verbatim** as your reply. Do not summarize it, wrap it in your own framing, or add a sign-off — any text you add reintroduces the voice being removed. A one-line lead like "Antigravity's translation (manager):" is the most you should add.
 
