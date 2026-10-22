@@ -1,6 +1,4 @@
 {
-  "theme": "auto",
-  "fastMode": true,
   "attribution": {
     "commit": "",
     "pr": ""
@@ -20,7 +18,17 @@
   "model": "opus[1m]",
   "enabledPlugins": {
     "swift-lsp@claude-plugins-official": true,
-    "gopls-lsp@claude-plugins-official": true
+    "gopls-lsp@claude-plugins-official": true,
+    "pstack@cursor-plugins": true,
+    "vercel@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "cursor-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "cursor/plugins"
+      }
+    }
   },
   "sandbox": {
     "network": {
@@ -42,5 +50,7 @@
       "effortLevel": "medium"
     }
   },
-  "skipDangerousModePermissionPrompt": true
+  "fastMode": true,
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "auto"
 }
