@@ -41,6 +41,15 @@ Follow-ups:
 - If the answer is fact-shaped, suggest it as a flashcard candidate in step 4.
 - He can pass on the question. Record nothing and move on — one light remark at most, no guilt-tripping.
 
+### Occasional taste question
+
+Ask a second, short question when either is true:
+
+- Today's note mentions something he ate, read, watched, listened to, or stayed at — ask how it was
+- Otherwise, roughly one evening in three (`$(( 10#$(date +%j) % 3 )) -eq 0`) — ask about the thinnest file among `FOOD`, `TRAVEL`, `MUSIC`, `SCREEN`, and `BOOKS` in `personhood/`, e.g. "A hotel you'd go back to, and why?" or "An album you've had on repeat lately?"
+
+One question, answerable in a sentence. File the answer per the `personhood` skill's taste format (Loved / Liked / Didn't work / Want to try, his words for the why) and log it in `updates.md`. Passing is fine; don't re-ask the same question the next time.
+
 ## Step 4: Build flashcards together
 
 Present the shortlist from step 2 (plus anything from step 3). For each fact Jamie wants to keep:
