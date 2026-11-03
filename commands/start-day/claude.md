@@ -82,6 +82,10 @@ to rebuild. If healthy, run `cass index` to pick up any new sessions since the
 last index. Report the status briefly in the briefing (e.g. "cass: healthy,
 2,500 conversations indexed" or "cass: rebuilt index").
 
+## Step 6.5: Sync personhood taste files
+
+Run `~/workspace/repos/agentfiles-private/scripts/sync-personhood.sh`. It mirrors the vault's `personhood/` into the private `personhood` repo that the claude.ai project reads, and pushes if anything changed. Mention it in the briefing only if it pushed or failed.
+
 ## Step 7: Git status across workspace repos
 
 For each directory in `~/workspace/repos/*/`, run:
