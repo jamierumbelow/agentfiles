@@ -27,3 +27,7 @@ git -C ~/workspace/repos/<repo> worktree add ~/workspace/repos-workspaces/<repo>
 ## Commit attribution
 
 Never add a `Co-Authored-By: Claude` trailer, a "Generated with Claude Code" line, or any other Anthropic attribution to commit messages or PR bodies, including in subagents.
+
+## Recommendations
+
+Before recommending Jamie anything personal (restaurants, hotels, trips, books, music, films, gifts), load the `personhood` skill and read his taste files. When he reacts to something he ate, read, watched, or stayed at, offer to record it there.
