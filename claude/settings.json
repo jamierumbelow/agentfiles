@@ -55,5 +55,6 @@
   },
   "fastMode": true,
   "skipDangerousModePermissionPrompt": true,
-  "theme": "auto"
+  "theme": "auto",
+  "switchModelsOnFlag": true
 }
