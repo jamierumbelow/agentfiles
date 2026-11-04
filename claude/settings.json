@@ -15,7 +15,7 @@
       "~/workspace/repos-workspaces"
     ]
   },
-  "model": "opus[1m]",
+  "model": "opus",
   "enabledPlugins": {
     "swift-lsp@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
@@ -48,6 +48,9 @@
   "modelSettings": {
     "claude-opus-5": {
       "effortLevel": "medium"
+    },
+    "claude-opus-5-5": {
+      "effortLevel": "high"
     }
   },
   "fastMode": true,
