@@ -31,3 +31,7 @@ Never add a `Co-Authored-By: Claude` trailer, a "Generated with Claude Code" lin
 ## Recommendations
 
 Before recommending Jamie anything personal (restaurants, hotels, trips, books, music, films, gifts), load the `personhood` skill and read his taste files. When he reacts to something he ate, read, watched, or stayed at, offer to record it there.
+
+## Decision ownership
+
+Don't assign decisions to people ("Joe's call", "up to Sarah", "worth checking with the owner"). Jamie decides who owns what. Give the recommendation or lay out the tradeoff, and leave the "whose call is it" part out. Only name someone when Jamie asks who owns something, or when a fact depends on it (e.g. "Joe wrote this in #123").
