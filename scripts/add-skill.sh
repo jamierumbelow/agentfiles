@@ -25,7 +25,7 @@ Codex, and Gemini CLI.
 The skill directory is symlinked into:
   ~/.claude/skills/<name>
   ~/.agents/skills/<name>   (Codex)
-  ~/.gemini/skills/<name>
+  ~/.gemini/skills/<name>   (skipped if the skill has a .no-gemini file)
 EOF
     exit 1
 }
@@ -59,5 +59,15 @@ TARGETS=(
 )
 
 for target_dir in "${TARGETS[@]}"; do
+    # A .no-gemini file keeps a skill out of agy/Gemini CLI, e.g. debuzz,
+    # which shells out to agy: if agy can see it, the model tries to load
+    # it mid-rewrite and headless agy aborts on the denied read_file.
+    if [[ "$target_dir" == "$HOME/.gemini/skills" && -f "$skill_dir/.no-gemini" ]]; then
+        if [[ -L "$target_dir/$skill_name" ]]; then
+            rm "$target_dir/$skill_name"
+            info "Removed $target_dir/$skill_name (.no-gemini)"
+        fi
+        continue
+    fi
     safe_link "$skill_dir" "$target_dir/$skill_name"
 done
