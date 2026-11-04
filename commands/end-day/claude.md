@@ -1,6 +1,6 @@
 # End Day
 
-Evening wrap-up ritual, the counterpart to `/start-day`. **This command is interactive — Jamie must be present.** Its whole purpose is to create small moments where Jamie generates his own thinking — the journal answer and the flashcard phrasing. The agent does everything _around_ those moments (searching, formatting, filing, syncing) but never the generating itself. Do not answer the journal question for him, and do not write flashcards he hasn't approved.
+Evening wrap-up ritual, the counterpart to `/start-day`. **This command is interactive — Jamie must be present.** Its whole purpose is to create small moments where Jamie generates his own thinking — the flashcard phrasing and the occasional taste answer. The agent does everything _around_ those moments (searching, formatting, filing, syncing) but never the generating itself. Do not answer for him, and do not write flashcards he hasn't approved.
 
 Target: the whole ritual should take Jamie about five minutes.
 
@@ -27,23 +27,11 @@ Distill to a shortlist of **3–7 one-line facts**, each with its source. These 
 
 If nothing qualifies, say so plainly. Never pad the list to look productive.
 
-## Step 3: Journal prompts
+## Step 3: Occasional taste question
 
-Ask Jamie one question and wait for his answer:
+There is no journal prompt; Jamie writes the Journal himself during the day. Do not ask "what did you learn today?" or similar.
 
-**"What's one thing you learned today?"**
-
-File the answer under `## Journal` in today's note, prefixed with `HH:MM - `, **verbatim**. No cleanup, no embellishment, no expansion — this deliberately overrides the vault's usual "clean up and embellish" instruction. The Journal is Jamie's voice; rough phrasing is the point. (Fixing an obvious typo is fine only if he asks.)
-
-Follow-ups:
-
-- If an answer clearly relates to an existing evergreen note or an open question, offer to cross-file it — append his words verbatim, with today's date, to the evergreen note or `personhood/PROBLEMS.md`. Only do this if he says yes.
-- If the answer is fact-shaped, suggest it as a flashcard candidate in step 4.
-- He can pass on the question. Record nothing and move on — one light remark at most, no guilt-tripping.
-
-### Occasional taste question
-
-Ask a second, short question when either is true:
+Ask one short question only when either is true (otherwise skip straight to step 4):
 
 - Today's note mentions something he ate, read, watched, listened to, or stayed at — ask how it was
 - Otherwise, roughly one evening in three (`$(( 10#$(date +%j) % 3 )) -eq 0`) — ask about the thinnest file among `FOOD`, `TRAVEL`, `MUSIC`, `SCREEN`, and `BOOKS` in `personhood/`, e.g. "A hotel you'd go back to, and why?" or "An album you've had on repeat lately?"
@@ -52,7 +40,7 @@ One question, answerable in a sentence. File the answer per the `personhood` ski
 
 ## Step 4: Build flashcards together
 
-Present the shortlist from step 2 (plus anything from step 3). For each fact Jamie wants to keep:
+Present the shortlist from step 2. For each fact Jamie wants to keep:
 
 - Jamie supplies or approves the phrasing — especially the answer, which should be in words he'd naturally recall
 - Format as a flashcard callout under `## Flashcards` per the `flashcards` skill, checkbox `- [ ]`
@@ -69,7 +57,7 @@ Run the import from the `flashcards` skill for all unsynced `- [ ]` cards across
 - Ask if anything should go under `## Tomorrow`.
 - Tick `/end-day` in the `## Everyday` checklist. If other Everyday items are unchecked, mention them once, without nagging.
 - Run `~/workspace/repos/agentfiles-private/scripts/sync-personhood.sh` so tonight's answers reach the claude.ai project. If it pushed, remind Jamie that the project picks up changes only when he taps sync on the GitHub source in claude.ai.
-- Write a closing worklog entry via the `worklog` skill, e.g. `HH:MM - wrapping up. Journal written, N cards to Mochi.`
+- Write a closing worklog entry via the `worklog` skill, e.g. `HH:MM - wrapping up. N cards to Mochi.`
 
 ## Summary
 
@@ -78,7 +66,6 @@ End with a compact recap:
 ```
 ## Day closed
 
-- Journal: 1 entry (cross-filed to [[note]])
 - Flashcards: N created, M synced to Mochi
 - Tomorrow: [items or "nothing queued"]
 ```
