@@ -34,7 +34,7 @@ If it's ticked, skip this silently.
 
 ## Step 3.6: Today's workout
 
-Read the Weekly Template table in `~/workspace/vault/evergreen/workout-plan.md` and find today's weekday. Write the session under today's `## Workout` section as a checkbox, e.g. `- [ ] Push + Run (2km)`. On a rest day write `Rest day` with no checkbox. If the note predates the section, add `## Workout` after `## Everyday` first. Don't write a second line if the section already has one.
+Read the Weekly Template table in `~/workspace/vault/evergreen/workout-plan.md` and find today's weekday. Write the session under today's `## Workout` section as a checkbox, e.g. `- [ ] Push + Run (2km)`. For a run, add today's distance from the plan's Running table, counting weeks from its **Started** date, e.g. `- [ ] Run (easy): 3 km`. On a rest day write `Rest day` with no checkbox. If the note predates the section, add `## Workout` after `## Everyday` first. Don't write a second line if the section already has one.
 
 Then check how the week is going. Read the `## Workout` sections of this week's earlier daily notes (Monday to yesterday) and count the ticked sessions against the planned ones. Also look at the most recent week before this one: if the same session was skipped both weeks, say so (Full Body was skipped two weeks running in March).
 
