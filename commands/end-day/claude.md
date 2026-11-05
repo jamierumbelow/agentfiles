@@ -10,6 +10,17 @@ The daily file lives at `~/workspace/vault/daily/YYYY/MM/YYYY-MM-DD.md`. If it d
 
 Read through the day's note, paying particular attention to the `## Journal` section. Jamie logs to this section over the course of the day, and may add todos or things to remember here. Read through it and ensure that you capture everything relevant; Jamie would much rather see more noise than lose some signal.
 
+## Step 1.5: Log the workout
+
+Read today's `## Workout` section. Jamie ticks the session and writes notes under it in shorthand, or pastes in what Strong or Whoop recorded.
+
+- **Ticked, with notes:** add the session to `~/workspace/vault/evergreen/workout-log.md` (see below).
+- **Ticked, no notes:** log the session name only. Don't ask for sets or reps.
+- **Unticked, and a session was planned:** ask once whether he got it in, naming the session ("Did you get Full Body in?"). If he did, tick it and log what he says. If he didn't, log `*Skipped.*` plus his reason if he gives one. The log already records skips, and they show patterns.
+- **Rest day, or no section:** skip this step.
+
+In the log, put the session under the current week's heading, `## Week of D Month YYYY` with Monday's date. Create the heading after the last entry if it isn't there yet, with a `---` above it. Then add `### Weekday D — Session`. Copy the existing entries' format: a table per lift with one column per set (`16kg x 8`), and runs as `**Run** — 3.0km, 6:40/km, avg HR 155bpm, 129m elevation`, with only the fields he gave. Keep his comments as written, in italics. Don't invent or pad numbers.
+
 ## Step 2: Harvest SRS candidates (silently, before talking to Jamie)
 
 Gather candidate **facts worth remembering** from these sources only:
@@ -66,6 +77,7 @@ End with a compact recap:
 ```
 ## Day closed
 
+- Workout: [session logged / skipped / rest day]
 - Flashcards: N created, M synced to Mochi
 - Tomorrow: [items or "nothing queued"]
 ```

@@ -8,7 +8,7 @@ The daily file lives at `~/workspace/vault/daily/YYYY/MM/YYYY-MM-DD.md`. Use `da
 
 If today's file does not exist, create the month directory (`mkdir -p`) and copy the template from `~/workspace/vault/templates/daily.md`, replacing `{{time}}` with the current `HH:MM`.
 
-If the template is missing (e.g. the vault is still syncing on a new machine), create the file with empty `## Todos`, `## Tomorrow`, `## Journal` and `## Worklog` sections instead, and mention it in the briefing.
+If the template is missing (e.g. the vault is still syncing on a new machine), create the file with empty `## Workout`, `## Todos`, `## Tomorrow`, `## Journal` and `## Worklog` sections instead, and mention it in the briefing.
 
 If it already exists, note that and move on.
 
@@ -31,6 +31,14 @@ If there are unchecked items, deduplicate them and add them all to today's `## T
 Look at the most recent daily note before today (the same one from Step 2). If `- [ ] /end-day` in its `## Everyday` section is still unticked, Jamie skipped `/end-day` — and he has explicitly asked to be told off for this. Include a short, genuine scolding in the briefing (one or two sentences, pointed but good-humoured) reminding him the 5pm reminder exists for a reason. If several recent days in a row have it unticked, say so — the streak is part of the telling-off.
 
 If it's ticked, skip this silently.
+
+## Step 3.6: Today's workout
+
+Read the Weekly Template table in `~/workspace/vault/evergreen/workout-plan.md` and find today's weekday. Write the session under today's `## Workout` section as a checkbox, e.g. `- [ ] Push + Run (2km)`. On a rest day write `Rest day` with no checkbox. If the note predates the section, add `## Workout` after `## Everyday` first. Don't write a second line if the section already has one.
+
+Then check how the week is going. Read the `## Workout` sections of this week's earlier daily notes (Monday to yesterday) and count the ticked sessions against the planned ones. Also look at the most recent week before this one: if the same session was skipped both weeks, say so (Full Body was skipped two weeks running in March).
+
+Briefing line: today's session, then the week so far, e.g. "Full Body today. This week: Push ✓, Pull ✗, Legs + Run ✓." Skip the week summary if no earlier notes this week have a `## Workout` section.
 
 ## Step 4: Fetch today's calendar
 
@@ -117,6 +125,9 @@ After all steps are complete, present a formatted summary to the user:
 
 ### Calendar
 [all-day events, then timed events in order]
+
+### Workout
+[today's session and the week so far]
 
 ### End-day check
 [scolding if yesterday's /end-day is unticked; omit section entirely if it ran]

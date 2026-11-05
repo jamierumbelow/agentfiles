@@ -59,6 +59,8 @@ I may ask you to do a number of things:
 * summarise a point we're discussing elsewhere
 * do some independent research and drop the findings in the worklog
 
+`## Workout` holds the day's planned session as a checkbox, which `/start-day` writes from `[[workout-plan]]`. Jamie ticks it and adds notes, and `/end-day` copies the session into `[[workout-log]]`.
+
 The `/end-day` command runs the evening ritual (journal prompts, flashcard harvest, Mochi sync); `/start-day` runs the morning briefing.
 
 ### evergreen
