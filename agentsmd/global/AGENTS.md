@@ -26,6 +26,17 @@ git -C ~/workspace/repos/<repo> worktree add ~/workspace/repos-workspaces/<repo>
 - When the branch is merged or abandoned, remove it with `git worktree remove <path>`, then `git worktree prune`. Delete the empty `<repo>` directory if it was the last one.
 - Never remove a worktree with uncommitted or unpushed changes, or one you didn't create in this session, without asking Jamie first.
 
+## Installing software: always mise, never brew
+
+Never run `brew install`, `brew upgrade`, `brew reinstall` or `brew install --cask`, even when a README or an error message tells you to. Everything on this machine is installed through mise and declared in config, so it can be rebuilt. Read-only lookups (`brew info`, `brew search`) are fine for finding a name.
+
+- **CLI tools and runtimes:** add them to `[tools]` in `~/workspace/repos/agentfiles/mise/mise.toml`, or in the project's `mise.toml` if only that project needs it, then run `mise install`. Find the backend with `mise registry <name>` (`aqua:`, `github:`, `npm:`, `pipx:` and `cargo:` all work).
+- **Host libraries** (e.g. `libpq`): add `"brew:<formula>" = "latest"` under `[bootstrap.packages]` in `~/workspace/repos/dotfiles/mise/config.toml`.
+- **Mac apps:** add `"brew-cask:<cask>" = { os = "macos" }` in the same place. For both of these, run `mise bootstrap packages apply --yes` afterwards. mise writes into the Homebrew prefix itself.
+- **One-off use:** `mise exec <tool>@<version> -- <command>` runs a tool without installing it permanently.
+
+Commit config changes in agentfiles or dotfiles only when asked.
+
 ## Commit attribution
 
 Never add a `Co-Authored-By: Claude` trailer, a "Generated with Claude Code" line, or any other Anthropic attribution to commit messages or PR bodies, including in subagents.
