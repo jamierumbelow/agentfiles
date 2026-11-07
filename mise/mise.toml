@@ -63,6 +63,7 @@ linux-arm64 = { asset_pattern = "rtk-aarch64-unknown-linux-gnu.tar.gz" }
 "~/bin/add-command" = "~/workspace/repos/agentfiles/scripts/add-command.sh"
 "~/bin/add-all-skills" = "~/workspace/repos/agentfiles/scripts/add-all-skills.sh"
 "~/bin/add-all-commands" = "~/workspace/repos/agentfiles/scripts/add-all-commands.sh"
+"~/bin/worklog-append" = "~/workspace/repos/agentfiles/scripts/worklog-append"
 "~/.claude/settings.json" = "~/workspace/repos/agentfiles/claude/settings.json"
 "~/.codex/config.toml" = "~/workspace/repos/agentfiles/codex/config.toml"
 "~/.claude/AGENTS.md" = "~/workspace/repos/agentfiles/agentsmd/global/AGENTS.md"

@@ -25,8 +25,9 @@ Save the returned text verbatim. Do not re-polish it afterwards; that is how the
 
 ### Where it applies
 
-- **`## Worklog` entries** in `daily/`, which are the machine layer and the highest-volume agent prose in the vault.
 - **Standalone prose pages** you drafted: `writing/`, `snippets/`, `personal/`, `links/`, project notes, and research dumps filed anywhere outside the directories excluded below.
+
+`## Worklog` entries are exempt: they're high-volume and short, so the pass costs more than it fixes. Write them in the worklog register and append with `worklog-append`.
 
 ### Where it must never apply
 

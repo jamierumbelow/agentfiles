@@ -4,118 +4,48 @@ description: >-
   Append timestamped entries to Jamie's daily worklog in
   `~/workspace/vault/daily/`. Use proactively after completing tasks, making
   commits or PRs, finishing research, or reaching any meaningful milestone.
-  Preserve the day's local formatting and write alongside Jamie rather than in
-  generic assistant prose.
+  Write alongside Jamie rather than in generic assistant prose.
 ---
 
 # Worklog
 
-Use this skill whenever work in the current session reaches a point Jamie would
-want captured in the daily note.
+The daily note is a running log shared between Jamie and agents. Add one entry
+per meaningful milestone.
 
-The daily note is a shared running log between Jamie and agents. Treat it as a
-live collaborative document, not as an append-only machine trace.
+## Appending an entry
+
+One command, no other steps:
+
+```bash
+worklog-append "Opened [salp#8457](https://github.com/SALP-Strategy/salp/pull/8457): By person / By page toggle on /system/access."
+```
+
+It works out today's path (`~/workspace/vault/daily/YYYY/MM/YYYY-MM-DD.md`),
+creates the note from `templates/daily.md` if needed, stamps the current time,
+matches the day's style (plain `HH:MM - ` or bulleted `* HH:MM - `), and
+appends inside `## Worklog`. It prints the line it wrote, so there is no need
+to read the note before or after. It rejects em dashes and multi-line entries;
+fix the text and rerun.
+
+Pass a single-quoted string if the text contains backticks or `$`. Only use
+`--date YYYY-MM-DD` / `--time HH:MM` when Jamie asks you to backfill.
+
+If the sandbox blocks writes to `~/workspace/vault`, request escalation rather
+than skipping the entry.
 
 ## Writing style
 
-Write in the worklog register from `~/workspace/vault/STYLEGUIDE.md`:
+The worklog register from `~/workspace/vault/STYLEGUIDE.md`:
 
 - casual, fragmentary, present-tense
 - concise, but specific enough to be useful later
 - British English
 - no em dashes
 
-If Jamie gives rough shorthand, rewrite it into a clean entry that fits the
-note. Name the repo, PR, file, decision, or outcome when that makes the entry
-more useful.
-
-Avoid generic assistant phrasing such as "completed the task", "successfully
-implemented", or "investigated the codebase". Write like a collaborator keeping
-notes during the day.
-
-## Debuzz the entry before appending
-
-Draft the entry, then run it through the `debuzz` skill in **`vault` mode** and
-append what comes back. Worklog entries are the highest-volume agent prose in
-the vault, and an independent editor catches the assistant register more
-reliably than re-reading your own draft does.
-
-Keep the timestamp prefix, `[[wiki-links]]`, `#tags`, PR links, commit SHAs, and
-backticked paths byte-identical. Check the result for em dashes before writing;
-the STYLEGUIDE bans them and a rewrite is where they creep in.
-
-Skip the pass for one-line entries, `## Todos` items, and checkbox or status
-changes. There is no register to fix and the call costs about ten seconds.
-
-If `agy` is unavailable, append the entry as drafted and mention that the pass
-was skipped. Never substitute your own rewrite.
-
-## File location
-
-Today's file lives at:
-
-```text
-~/workspace/vault/daily/YYYY/MM/YYYY-MM-DD.md
-```
-
-Use `date` to get the path components and timestamp:
-
-```bash
-date +%Y
-date +%m
-date +%Y-%m-%d
-date +%H:%M
-```
-
-If today's file does not exist:
-
-1. Create the month directory.
-2. Copy `~/workspace/vault/templates/daily.md`.
-3. Replace `{{time}}` in the template with the current `HH:MM`.
-
-If your sandbox blocks writes to `~/workspace/vault`, request escalation rather
-than skipping the log entry.
-
-Default to today's note. Only backfill another day's worklog if Jamie
-explicitly asks.
-
-## Safe append workflow
-
-1. Read today's file immediately before editing.
-2. Find the `## Worklog` section.
-3. Inspect the existing entries in that section and match the local format.
-
-Match the format already in use for that day:
-
-- plain style: `HH:MM - entry text`
-- bulleted style: `* HH:MM - entry text`
-- if the section is empty or the file was just created, use the template's
-  plain `HH:MM - entry text` style
-
-Preserve the surrounding spacing and punctuation. Do not normalise older
-entries, rewrite Jamie's prose, or silently convert a plain day into a bulleted
-day.
-
-Append only inside `## Worklog`. Do not modify `## Everyday`, `## Todos`,
-`## Flashcards`, or `## Tomorrow` unless Jamie asked for that specifically.
-
-## Todo tags
-
-Every item in `## Todos` should end with one of these tags:
-
-- `#work` — World / professional tasks
-- `#life` — life admin, family, personal finance
-- `#side-projects` — side projects (e.g. lgtm)
-
-When adding new todos or carrying them forward to a new day, always include the
-appropriate tag at the end of the line.
-
-If `## Worklog` is missing, add it at the end of the file and append the new
-entry there.
-
-Because this file is shared, re-read or patch carefully enough to avoid
-overwriting entries another agent or Jamie may have added since your earlier
-read.
+Name the repo, PR, file, decision, or outcome when that makes the entry more
+useful on reread. Avoid assistant phrasing such as "completed the task",
+"successfully implemented", or "investigated the codebase". Write like a
+collaborator keeping notes during the day.
 
 ## What to log
 
@@ -123,29 +53,20 @@ read.
 - commits, PRs, merges, and releases
 - finished research with findings, not just "looked into X"
 - decisions, discoveries, blockers, and handoffs
-- explicit user requests to add or tidy worklog notes
 
-Prefer outcome over process noise. If several tiny steps add up to one
-meaningful milestone, collapse them into one entry.
+Prefer outcome over process noise. Collapse several small steps into one entry.
+Don't log every file edit, failed attempts with no learning value, anything
+already in today's note, or "starting work".
 
-## What not to log
+## Editing other sections
 
-- every small file read or edit
-- failed attempts with no learning value
-- duplicate status already captured in today's note
-- generic bookkeeping such as "starting work", unless it adds real context
+Only touch `## Todos`, `## Tomorrow`, or other sections when Jamie asks. Then
+read the note, edit it directly, and leave `## Everyday`, `## Flashcards`, and
+other people's entries alone. Every `## Todos` item ends with one tag:
 
-## Entry shape
-
-Good entries usually answer one or more of these:
-
-- What changed?
-- What was decided?
-- What did we learn?
-- Why does it matter?
-
-Keep each entry to one coherent milestone. Use links when they make the note
-more valuable on reread.
+- `#work`: World / professional tasks
+- `#life`: life admin, family, personal finance
+- `#side-projects`: side projects (e.g. lgtm)
 
 ## Examples
 

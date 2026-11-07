@@ -106,10 +106,10 @@ Run these in parallel where possible to keep things fast.
 
 ## Step 8: Write a worklog entry
 
-Use the `worklog` skill to write an entry like:
+Append it with `worklog-append` (it stamps the time and matches the day's style), e.g.:
 
 ```
-* HH:MM - starting the day. N meetings today, M repos with uncommitted work.
+worklog-append 'starting the day. N meetings today, M repos with uncommitted work.'
 ```
 
 Adjust the content based on what you found in the previous steps. Keep it brief.

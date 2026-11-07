@@ -1,6 +1,8 @@
 ## Worklog
 
-Proactively write to the daily worklog after completing tasks, making commits or PRs, finishing research, or reaching any meaningful milestone. Use the `worklog` skill for format and path details. Do not wait to be asked; this is a standing instruction for all sessions.
+Proactively write to the daily worklog after completing tasks, making commits or PRs, finishing research, or reaching any meaningful milestone. Do not wait to be asked; this is a standing instruction for all sessions.
+
+Append with one command: `worklog-append 'entry text'`. It finds today's note, stamps the time and prints the line it wrote, so don't load the `worklog` skill, read the note or run `date` first. Write entries casual, fragmentary and specific (name the repo, PR or outcome), in British English, with no em dashes. Load the `worklog` skill only to edit other sections of the note or if you're unsure what's worth logging.
 
 ## Skill friction
 

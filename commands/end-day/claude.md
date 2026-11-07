@@ -68,7 +68,7 @@ Run the import from the `flashcards` skill for all unsynced `- [ ]` cards across
 - Ask if anything should go under `## Tomorrow`.
 - Tick `/end-day` in the `## Everyday` checklist. If other Everyday items are unchecked, mention them once, without nagging.
 - Run `~/workspace/repos/agentfiles-private/scripts/sync-personhood.sh` so tonight's answers reach the claude.ai project. If it pushed, remind Jamie that the project picks up changes only when he taps sync on the GitHub source in claude.ai.
-- Write a closing worklog entry via the `worklog` skill, e.g. `HH:MM - wrapping up. N cards to Mochi.`
+- Write a closing worklog entry with `worklog-append 'wrapping up. N cards to Mochi.'`
 
 ## Summary
 

@@ -1,0 +1,118 @@
+#!/usr/bin/env python3
+"""Append one timestamped entry to the ## Worklog section of today's daily note.
+
+Usage:
+  worklog-append "entry text"
+  echo "entry text" | worklog-append
+  worklog-append --date 2026-11-05 --time 17:30 "backfilled entry"
+
+Creates the note from the vault template if it doesn't exist, matches the
+day's entry style (plain `HH:MM - ` or bulleted `* HH:MM - `), and prints the
+line it wrote. Set WORKLOG_VAULT to point at a different vault (for testing).
+"""
+
+import argparse
+import datetime as dt
+import os
+import re
+import sys
+import tempfile
+from pathlib import Path
+
+VAULT = Path(os.environ.get("WORKLOG_VAULT", "~/workspace/vault")).expanduser()
+ENTRY = re.compile(r"^(\* )?\d{1,2}:\d{2} - ")
+STUB = re.compile(r"^(\* )?\d{1,2}:\d{2} -\s*$")
+
+
+def fail(msg):
+    print(f"worklog-append: {msg}", file=sys.stderr)
+    sys.exit(1)
+
+
+def insert(text, line):
+    lines = text.split("\n")
+    start = next((i for i, l in enumerate(lines) if l.strip() == "## Worklog"), None)
+    if start is None:
+        body = text.rstrip("\n")
+        return f"{body}\n\n## Worklog\n\n{line}\n"
+
+    end = next((i for i in range(start + 1, len(lines)) if lines[i].startswith("## ")), len(lines))
+    section = lines[start + 1 : end]
+    entries = [l for l in section if ENTRY.match(l) or STUB.match(l)]
+    if entries and entries[-1].startswith("* "):
+        line = "* " + line
+
+    # A fresh note from the template carries an empty "HH:MM - " stub; fill it.
+    filled = [i for i, l in enumerate(section) if l.strip()]
+    if len(filled) == 1 and STUB.match(section[filled[0]]):
+        section[filled[0]] = line
+    else:
+        last = filled[-1] if filled else -1
+        section.insert(last + 1, line)
+        if last == -1:
+            section.insert(0, "")
+
+    if end < len(lines) and section and section[-1].strip():
+        section.append("")
+    return "\n".join(lines[: start + 1] + section + lines[end:])
+
+
+def main():
+    p = argparse.ArgumentParser(description="Append an entry to today's worklog.")
+    p.add_argument("text", nargs="*", help="entry text (read from stdin if omitted)")
+    p.add_argument("--date", help="YYYY-MM-DD, only for backfilling another day")
+    p.add_argument("--time", help="HH:MM, defaults to now")
+    a = p.parse_args()
+
+    text = " ".join(a.text) if a.text else sys.stdin.read()
+    text = text.strip()
+    if not text:
+        fail("empty entry")
+    if "\n" in text:
+        fail("entry must be a single line")
+    if "—" in text:
+        fail("entry contains an em dash; the vault style guide bans them")
+
+    now = dt.datetime.now()
+    day = dt.date.fromisoformat(a.date) if a.date else now.date()
+    hhmm = a.time or now.strftime("%H:%M")
+    if not re.fullmatch(r"\d{2}:\d{2}", hhmm):
+        fail("--time must be HH:MM")
+
+    path = VAULT / "daily" / f"{day:%Y}" / f"{day:%m}" / f"{day:%Y-%m-%d}.md"
+    if path.exists():
+        original = path.read_text()
+    else:
+        template = VAULT / "templates" / "daily.md"
+        if not template.exists():
+            fail(f"no note at {path} and no template at {template}")
+        path.parent.mkdir(parents=True, exist_ok=True)
+        original = template.read_text().replace("{{time}}", hhmm)
+
+    line = f"{hhmm} - {text}"
+    updated = insert(original, line)
+    if not updated.endswith("\n"):
+        updated += "\n"
+
+    # Someone (Jamie in Obsidian, another agent) may have written since we read.
+    if path.exists() and path.read_text() != original:
+        original = path.read_text()
+        updated = insert(original, line)
+        if not updated.endswith("\n"):
+            updated += "\n"
+
+    fd, tmp = tempfile.mkstemp(dir=path.parent, prefix=".worklog-", suffix=".md")
+    with os.fdopen(fd, "w") as f:
+        f.write(updated)
+    if path.exists():
+        os.chmod(tmp, path.stat().st_mode & 0o777)
+    else:
+        os.chmod(tmp, 0o644)
+    os.replace(tmp, path)
+
+    written = next(l for l in updated.split("\n") if l.endswith(line))
+    print(f"{path}\n{written}")
+
+
+if __name__ == "__main__":
+    main()
