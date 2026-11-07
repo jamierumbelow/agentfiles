@@ -12,6 +12,7 @@ rust = "latest"
 # cli
 gh = "2.102.0"
 op = "2.41.0"
+"aqua:aws/session-manager-plugin" = "1.2.896.0"
 rg = "latest"
 aws = "2.38.2"
 aws-vault = "latest"
