@@ -85,10 +85,13 @@ Don't duplicate items that already exist in today's todos.
 
 ## Step 6: Update cass index
 
-Run `cass health --json`. If the exit code is non-zero, run `cass index --full`
-to rebuild. If healthy, run `cass index` to pick up any new sessions since the
-last index. Report the status briefly in the briefing (e.g. "cass: healthy,
-2,500 conversations indexed" or "cass: rebuilt index").
+Run `cass index` to pick up new sessions, then `cass health --json`. Health
+reports `"index stale"` whenever nothing was indexed in the last 5 minutes, so
+checking health first fails every morning and is not a sign of damage. Only if
+health still fails after the incremental index, or reports an error other than
+`index stale`, run `cass index --full` (it takes over 10 minutes, so run it in
+the background). Report the status briefly in the briefing (e.g. "cass:
+healthy" or "cass: rebuilt index").
 
 ## Step 6.5: Sync personhood taste files
 
