@@ -1,9 +1,9 @@
 personality = "pragmatic"
-model = "gpt-6.1-sol"
-model_reasoning_effort = "medium"
+model = "gpt-6-astra"
+model_reasoning_effort = "high"
 commit_attribution = ""
 suppress_unstable_features_warning = true
-service_tier = "default"
+service_tier = "fast"
 
 
 notify = ["/Users/jamierumbelow/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
@@ -133,6 +133,9 @@ trust_level = "trusted"
 [projects."/Users/james.rumbelow/workspace/repos/fapps"]
 trust_level = "trusted"
 
+[projects."/Users/jamierumbelow/workspace/repos/pipeline-poc"]
+trust_level = "trusted"
+
 [marketplaces.openai-bundled]
 source_type = "local"
 source = "/Users/jamierumbelow/.codex/.tmp/bundled-marketplaces/openai-bundled"
@@ -187,9 +190,13 @@ approval_mode = "approve"
 generate_memories = false
 use_memories = false
 
+[tui]
+screen_reader_detection_done = true
+
 [tui.model_availability_nux]
 "gpt-5.5" = 4
 gpt-6-astra = 4
+"gpt-6.1-sol" = 1
 
 [desktop]
 followUpQueueMode = "queue"
