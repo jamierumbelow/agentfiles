@@ -19,7 +19,9 @@ Read today's `## Workout` section. Jamie ticks the session and writes notes unde
 - **Unticked, and a session was planned:** ask once whether he got it in, naming the session ("Did you get Full Body in?"). If he did, tick it and log what he says. If he didn't, log `*Skipped.*` plus his reason if he gives one. The log already records skips, and they show patterns.
 - **Rest day, or no section:** skip this step.
 
-In the log, put the session under the current week's heading, `## Week of D Month YYYY` with Monday's date. Create the heading after the last entry if it isn't there yet, with a `---` above it. Then add `### Weekday D — Session`. Copy the existing entries' format: a table per lift with one column per set (`16kg x 8`), and runs as `**Run** — 3.0km, 6:40/km, avg HR 155bpm, 129m elevation`, with only the fields he gave. Keep his comments as written, in italics. Don't invent or pad numbers.
+In the log, put the session under the current week's heading, `## Week of D Month YYYY` with Monday's date. Create the heading after the last entry if it isn't there yet, with a `---` above it. Then add `### Weekday D — Session`. Copy the existing entries' format: a table per lift with one column per set (`16kg x 8`), and runs as `**Run** — 3.0km, 6:40/km, avg HR 155bpm, 129m elevation`, with only the fields he gave. Keep his comments as written, in italics. Don't invent or pad numbers. If the session is already in the log (logged earlier in the day), don't add it twice.
+
+Then update that session's entry in `## Next targets` in `~/workspace/vault/evergreen/workout-plan.md`: the next weight and reps for each lift, with what he did in brackets. Go up a step only when he hit the top of the rep range on every set; if he went past the range, go up more than a step. Carry over anything he said about pain or form.
 
 ## Step 2: Harvest SRS candidates (silently, before talking to Jamie)
 

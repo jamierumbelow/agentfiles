@@ -60,7 +60,7 @@ I may ask you to do a number of things:
 * summarise a point we're discussing elsewhere
 * do some independent research and drop the findings in the worklog
 
-`## Workout` holds the day's planned session as a checkbox, which `/start-day` writes from `[[workout-plan]]`. Jamie ticks it and adds notes, and `/end-day` copies the session into `[[workout-log]]`.
+`## Workout` holds the day's planned session as a checkbox, which `/start-day` writes from `[[workout-plan]]`. Jamie ticks it and adds notes, and `/end-day` copies the session into `[[workout-log]]`. When he asks "what's today's workout", answer from the weekday in the plan's Weekly Template plus that session's lines in its `## Next targets` section (weights and reps). When he reports a session, log it and update `## Next targets` for that session.
 
 The `/end-day` command runs the evening ritual (journal prompts, flashcard harvest, Mochi sync); `/start-day` runs the morning briefing.
 
