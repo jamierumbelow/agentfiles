@@ -34,7 +34,7 @@ If it's ticked, skip this silently.
 
 ## Step 3.6: Today's workout
 
-Read the Weekly Template table in `~/workspace/vault/evergreen/workout-plan.md` and find today's weekday. Write the session under today's `## Workout` section as a checkbox, e.g. `- [ ] Push + Run (2km)`. For a run, add today's distance from the plan's Running table, counting weeks from its **Started** date, e.g. `- [ ] Run (easy): 3 km`. On a rest day write `Rest day` with no checkbox. If the note predates the section, add `## Workout` after `## Everyday` first. Don't write a second line if the section already has one.
+Read the Weekly Template table in `~/workspace/vault/evergreen/workout-plan.md` and find today's weekday. If the plan's `## This week` section has an entry for today, use that instead: it overrides the template for the current week. Write the session under today's `## Workout` section as a checkbox, e.g. `- [ ] Push + Run (2km)`. For a run, add today's distance from the plan's Running table, counting weeks from its **Started** date, e.g. `- [ ] Run (easy): 3 km`. On a rest day write `Rest day` with no checkbox. If the note predates the section, add `## Workout` after `## Everyday` first. Don't write a second line if the section already has one.
 
 For a gym session, copy that session's lines from the plan's `## Next targets` section as tab-indented sub-bullets under the checkbox (exercise, weight, sets x reps), so Jamie has the numbers on his phone in the gym. Put the same numbers in the briefing.
 
