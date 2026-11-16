@@ -50,13 +50,13 @@
       "effortLevel": "medium"
     },
     "claude-opus-5-5": {
-      "effortLevel": "high"
+      "effortLevel": "xhigh"
     },
     "claude-fable-5-1": {
       "effortLevel": "high"
     },
     "claude-fable-5-2": {
-      "effortLevel": "xhigh"
+      "effortLevel": "medium"
     }
   },
   "fastMode": true,
