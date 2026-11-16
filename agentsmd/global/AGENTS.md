@@ -48,3 +48,7 @@ Before recommending Jamie anything personal (restaurants, hotels, trips, books, 
 ## Decision ownership
 
 Don't assign decisions to people ("Joe's call", "up to Sarah", "worth checking with the owner"). Jamie decides who owns what. Give the recommendation or lay out the tradeoff, and leave the "whose call is it" part out. Only name someone when Jamie asks who owns something, or when a fact depends on it (e.g. "Joe wrote this in #123").
+
+## Sturdy code
+
+Before writing or reviewing code for a new feature, module, service, script or library, or for a nontrivial change in behaviour, load the `sturdy` skill and follow it. This holds inside workflows such as `/poteto-mode`, and for subagents that write the code. Skip it for typo fixes, renames, config-only edits and docs.
