@@ -20,11 +20,16 @@ If there are any items listed, add them to today's `## Todos` section (after any
 
 If the previous day's Tomorrow section is empty or the file doesn't exist, skip this step.
 
-## Step 3: Scan for dropped todos
+## Step 3: Carry forward open todos
 
-Look at the last 5 daily notes (excluding today). Collect any unchecked `- [ ]` items from their `## Todos` sections.
+Each note's `## Todos` is a snapshot of the list on that day. Jamie ticks or deletes items in the newest note only, so older notes still show those items as open. Do not merge the open items from several notes: that brings back everything he finished or dropped since. On 16 Nov it put six items ticked on 15 Nov back on the list, because 14 Nov still had them open.
 
-If there are unchecked items, deduplicate them and add them all to today's `## Todos` section (after any existing todos). Mention them in the briefing summary so Jamie knows what was pulled in.
+1. Find the baseline: the newest note before today, going back up to 7 days, that start-day filled in. Its `## Worklog` has an entry beginning `starting the day` (one older run wrote `start-day.`). A note without that entry was made from the bare template by an evening capture or a worklog entry, and holds only what was added that day.
+2. Carry forward the baseline's unchecked `- [ ]` items.
+3. Add the unchecked items from any notes newer than the baseline. Skip the template's empty `- [ ] ` placeholder and anything already carried. Ignore notes older than the baseline: the baseline already settled everything in them.
+4. If no note in the window has the entry, use the newest note with real todos as the baseline and say so in the briefing.
+
+Match items on their text after the checkbox, and add them to today's `## Todos` section after any existing todos. In the briefing, give the count and list only the items from step 3, since the rest is yesterday's list.
 
 ## Step 3.5: Check whether yesterday's /end-day ran
 
@@ -117,7 +122,7 @@ Append it with `worklog-append` (it stamps the time and matches the day's style)
 worklog-append 'starting the day. N meetings today, M repos with uncommitted work.'
 ```
 
-Adjust the content based on what you found in the previous steps. Keep it brief.
+Always begin the entry with `starting the day.`, because Step 3 uses it to tell the notes start-day filled in from template-only ones. Adjust the rest based on what you found in the previous steps. Keep it brief.
 
 ## Presenting the briefing
 
@@ -140,8 +145,8 @@ After all steps are complete, present a formatted summary to the user:
 ### Todos pulled forward
 [items from yesterday's Tomorrow section, if any]
 
-### Dropped todos pulled in
-[unchecked items from recent days that were added to today's Todos, if any]
+### Todos carried forward
+[count carried from the baseline note, plus any items picked up from newer template-only notes]
 
 ### Email
 [N new messages since yesterday]
